@@ -1,0 +1,36 @@
+﻿ <!DOCTYPE html>
+ <html>
+<head>
+	<meta name="viewport" content="width=device-width" />
+	<title>@ViewBag.Title</title>
+	<link rel="stylesheet" href="~/bootstrap/css/bootstrap.css" />
+</head>
+<body>
+	<header>
+		
+		<ul>
+  <li>
+   <img src="/mkloggaA40.png" alt="MK Logga">
+    </li>
+  <li>
+    <li>@Html.ActionLink("Index", "Index")</li>
+
+    
+  <li><@Html.ActionLink("Contact", "Contact")</li>
+
+  
+  <li>@Html.ActionLink("About", "About")</li>
+
+   <li>@Html.ActionLink("Projects", "Projects")</li>
+    
+</ul>
+	</header>
+	<div class="content">
+		
+		@RenderBody()
+
+		<footer>@DateTime.Now.ToString("dddd, dd MMMM yyyy") &copy; @ViewBag.Name  </footer>
+	</div>
+</body>
+
+ </html>

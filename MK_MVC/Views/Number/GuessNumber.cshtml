@@ -1,0 +1,22 @@
+﻿@{
+    ViewData["Title"] = "GuessNum";
+}
+<p>@ViewBag.CString</p>
+<p>@ViewBag.CNumber</p>
+<p>@ViewBag.Word</p>
+<p>@ViewBag.nG</p>
+<h1>GuessNum</h1>
+ 
+ 
+
+<form  method="post" asp-action="GuessNumber" asp-controller="Number">
+ 
+    <span>Gissa ett tal, 1 - 100!  </span> <input id="guess" type="text" name="guess" /> <br /><br />
+    
+    <input id="Submit" type="submit" value="Submit" />
+</form>
+<p>@ViewBag.Msg</p>
+<p>@ViewBag.SecNum</p>
+<p>@ViewBag.Num</p>
+
+

@@ -1,0 +1,21 @@
+﻿
+@{
+    ViewData["Title"] = "Index";
+}
+<body>
+<h1>Index</h1>
+
+<!--controller="Doctor" action="Index"-->
+<form  method="post" action="FeverCheck" controller="Doctor">
+ 
+    <span>Vad har du för temperatur?  </span> <input id="temp" type="text" name="temp" /> <br /><br />
+    
+    <input id="Submit" type="submit" value="Submit" />
+</form>
+
+<p>Testar</p>
+ 
+<h2>@ViewBag.Msg</h2>
+
+</body>
+
