@@ -1,0 +1,86 @@
+﻿@model MK_MVC.ViewModels.PeopleViewModel;
+
+
+@{
+    ViewData["Title"] = "Index";
+}
+@ViewBag.Msg
+<p>
+    @using (Html.BeginForm("Index", "Person", FormMethod.Post))
+{
+    
+           @Html.TextBox("SearchWord")
+           <input type="submit" id="SearchWord" value="Search" />
+
+} 
+</p>
+
+<h1>Add</h1>
+
+
+
+
+
+
+<form asp-controller="Person" asp-action="Add" method="post">
+    <div asp-validation-summary="All"></div>
+
+   <div class="form-group">
+    <label asp-for="Name"></label><br>
+    <input asp-for="Name" /><br>
+    <span asp-validation-for="Name"></span>
+    </div>
+    <div class="form-group">
+    <label asp-for="Phone"></label><br>
+    <input asp-for="Phone" /><br>
+    </div>
+    <div class="form-group">
+    <label asp-for="City"></label><br>
+    <input asp-for="City" /><br>
+    <span asp-validation-for="City"></span>
+    </div>
+    <input type="submit" value="Add person" /><br>
+</form>
+
+<h2>Table</h2>
+
+@if (Model?.AllPeople?.Count() == 0)
+{
+    <p>No people in list</p>
+}
+
+<table class="table">
+    <thead>
+        <tr><th></th>
+            <th>@Html.DisplayNameFor(model => model.PersonId)</th>
+            <th>@Html.DisplayNameFor(model => model.Name)</th>
+            <th>@Html.DisplayNameFor(model => model.Phone)</th>
+            <th>@Html.DisplayNameFor(model => model.City)</th>
+   </tr>
+    </thead>
+    @foreach (var p in Model?.AllPeople)
+        {
+            <tr>
+                <td>
+               @Html.ActionLink("Remove", "Remove", new {personId = @p.PersonId}); <!--, FormMethod.Post-->
+
+               </td>
+                <td>
+                    @Html.DisplayFor(modelItem => p.PersonId)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => p.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => p.Phone)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => p.City)
+                </td>
+            </tr>
+        }
+</table>
+
+      
+
+   

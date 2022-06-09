@@ -1,0 +1,57 @@
+
+var data = new [] {
+	new {
+		name = "Howard Bishop",
+		phone = "(749) 863-3748",
+		city = "Guápiles"
+	},
+	new {
+		name = "Derek Dixon",
+		phone = "(542) 246-1009",
+		city = "Valéncia"
+	},
+	new {
+		name = "Nathan Gilbert",
+		phone = "1-676-671-1754",
+		city = "Lauro de Freitas"
+	},
+	new {
+		name = "Clementine Michael",
+		phone = "(385) 763-6528",
+		city = "Uberlândia"
+	},
+	new {
+		name = "Elliott Carrillo",
+		phone = "(950) 400-6396",
+		city = "Canberra"
+	}
+};
+
+List<Person> Persons = new List<Person>() {
+
+		new Person{
+		Name = "Howard Bishop",
+		Phone = "(749) 863-3748",
+		City = "Guápiles"
+	},
+	new Person{
+		Name = "Derek Dixon",
+		Phone = "(542) 246-1009",
+		City = "Valéncia"
+	},
+	new Person{
+		Name = "Nathan Gilbert",
+		Phone = "1-676-671-1754",
+		City = "Lauro de Freitas"
+	},
+	new Person{
+		Name = "Clementine Michael",
+		Phone = "(385) 763-6528",
+		City = "Uberlândia"
+	},
+	new Person{
+		Name = "Elliott Carrillo",
+		Phone = "(950) 400-6396",
+		City = "Canberra"
+	}
+		};

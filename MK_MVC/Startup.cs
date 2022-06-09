@@ -43,6 +43,14 @@ namespace MK_MVC
 			app.UseEndpoints(endpoints =>
 
 			{
+			endpoints.MapControllerRoute(
+				name: "person",
+				 pattern: "Person",
+				defaults: new { controller = "Person", action = "Index" }
+
+			);
+
+			
 				endpoints.MapControllerRoute(
 					name: "guessnumber",
 					 pattern: "GuessNumber",
