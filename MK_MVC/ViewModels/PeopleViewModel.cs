@@ -37,7 +37,6 @@ namespace MK_MVC.ViewModels
 
 			People.Remove(item);
 
-			//item = null;
 		}
 		public List<Person> AllPeople { get; set; }
 		public PeopleViewModel()
@@ -45,37 +44,8 @@ namespace MK_MVC.ViewModels
 			
 		AllPeople = new List<Person>(People);
 		
-
 		}
 
-
-
-
-		//Remove
-/*
-public static void Remove(Person name)
-{
-
-	var itemToRemove = People.Single(r => r.Name == "name");
-	People.Remove(itemToRemove);
-	//PeopleViewModel.People.Find(x => x.);
-	//Person personToRemove = GetByName(name);Name == "name"
-	//Persons.Remove(personToRemove);
-	//PeopleViewModel.People.Remove(name);
-}
-*/
-//GetByName
-
-
-/*
-		public static void Remove(string name)
-			{
-			People.Sing(x => x.Name == name);
-			}
-*/
-
-
-
-}
+	}	
 }
 

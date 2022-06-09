@@ -7,7 +7,7 @@ using System.ComponentModel;
 
 namespace MK_MVC.ViewModels
 {
-	//[Bind(Exclude = "PersonId")]
+	
 	public class CreatePersonViewModel
 	{
 		
@@ -27,6 +27,8 @@ namespace MK_MVC.ViewModels
 		{
 			PeopleViewModel.People.Add(newperson);
 		}
+
+
 	}
 
 	

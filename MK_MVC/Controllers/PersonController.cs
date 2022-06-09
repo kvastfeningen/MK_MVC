@@ -59,54 +59,16 @@ namespace MK_MVC.Controllers
                 return RedirectToAction("Index");
               
             }
-            //return View();
-            return RedirectToAction("Index");
-        }
-        
-        public IActionResult Remove()
-        {
-            /*
-             PeopleViewModel viewModel = new PeopleViewModel();
             
-            var pList = PeopleViewModel.People.ToList();
-
-            var viewmodel = new PeopleViewModel()
-            {
-                AllPeople = pList
-            };
-            */
-            //return View("Index", viewmodel);
-            //return View("Index");
-            //return View();
-            //return RedirectToAction("Index", viewModel);
-           return RedirectToAction("Index");
+            return RedirectToAction("Index");
         }
         
-        [HttpPost]
-        public IActionResult Remove(int personId)
-            {
-            PeopleViewModel.Remove(personId);
-            //Person pToRemove = PeopleViewModel.People.Single(x => x.PersonId == personId);
-
-            //PeopleViewModel.People.Remove(pToRemove);
-           // pToRemove = null;
-            //var p = PeopleViewModel.People.SingleOrDefault(c => c.PersonId == personId);
-            //PeopleViewModel.People.Remove(p);
-            //ModelState.Clear();
-           // PeopleViewModel viewModel = new PeopleViewModel();
-            //var pList = PeopleViewModel.People.ToList();
-            //viewModel = pList();
-           /*
-            var viewmodel = new PeopleViewModel()
-            {
-                AllPeople = pList
-            };
-            */
-            //return RedirectToAction("Index", new { personId = 0 });
-            //return RedirectToAction("Index", viewmodel);
+        public IActionResult Remove(int Id)
+        {
+            PeopleViewModel.Remove(Id);
+            
             return RedirectToAction("Index");
-            //return View("Index");
         }
-
+       
     }
 }
