@@ -16,8 +16,12 @@ namespace MK_MVC.Controllers
         {
            if(string.IsNullOrEmpty(SearchWord))
             {
-                PeopleViewModel viewModel = new PeopleViewModel();
-
+                //PeopleViewModel viewModel = new PeopleViewModel();
+                var p = PeopleViewModel.People;
+                var viewModel = new PeopleViewModel()
+                {
+                    AllPeople = p
+                };
                 return View(viewModel);
             }
             else
@@ -33,6 +37,7 @@ namespace MK_MVC.Controllers
               
             }
         }
+
 
         public IActionResult Add()
         {

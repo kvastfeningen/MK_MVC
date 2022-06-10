@@ -1,5 +1,5 @@
 ﻿@model MK_MVC.ViewModels.PeopleViewModel;
-
+@using MK_MVC.Models
 
 @{
     ViewData["Title"] = "Index";
@@ -17,14 +17,10 @@
 
 <h1>Add</h1>
 
-
-
-
-
-
 <form asp-controller="Person" asp-action="Add" method="post">
     <!--<div asp-validation-summary="All"></div>-->
-    <div>@Html.ValidationSummary(false, "", new { @class = "text-danger" })</div>
+    <div asp-validation-summary="All" class="text-danger"></div>
+    @*<div>@Html.ValidationSummary(false, "", new { @class = "text-danger" })</div>*@
    <div class="form-group">
     <label asp-for="Name"></label><br>
     <input asp-for="Name" /><br>
@@ -42,43 +38,29 @@
     <input type="submit" value="Add person" /><br>
 </form>
 
-<h2>People Table</h2>
-
+<br />
 @if (Model?.AllPeople?.Count() == 0)
 {
     <p>No people in list</p>
 }
+<br />
+<h2>People Table</h2>
 
 <table class="table">
     <thead>
-        <tr><th></th>
+        <tr><th>  </th>
             <th>@Html.DisplayNameFor(model => model.PersonId)</th>
             <th>@Html.DisplayNameFor(model => model.Name)</th>
             <th>@Html.DisplayNameFor(model => model.Phone)</th>
             <th>@Html.DisplayNameFor(model => model.City)</th>
    </tr>
     </thead>
-    @foreach (var p in Model?.AllPeople)
+    <tr>
+    @foreach (var item in Model?.AllPeople)
         {
-            <tr>
-                <td>
-              
-               <a asp-action="Remove" asp-route-id="@p.PersonId">Remove</a>
-               </td>
-                <td>
-                    @Html.DisplayFor(modelItem => p.PersonId)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => p.Name)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => p.Phone)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => p.City)
-                </td>
-            </tr>
+            <partial name="_Person" model="item" />
         }
+     </tr>
 </table>
 
       
