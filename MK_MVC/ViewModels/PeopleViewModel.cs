@@ -21,10 +21,9 @@ namespace MK_MVC.ViewModels
 			new Person ("Clementine Michael", "(385) 763-6528", "Uberlândia"),
 			new Person ("Elliott Carrillo", "(950) 400-6396", "Canberra"),
 		};
+        internal List<Person> viewModel;
 
-
-		
-		public int PersonId { get; set; }
+        public int PersonId { get; set; }
 		public string Name { get; set; }
 		public string Phone { get; set; }
 		public string City { get; set; }

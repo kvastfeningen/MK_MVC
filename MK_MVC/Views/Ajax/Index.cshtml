@@ -1,0 +1,71 @@
+﻿@model MK_MVC.ViewModels.PeopleViewModel;
+@using MK_MVC.Models
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<div>
+
+</div>
+<div>
+<input type="submit" id="PList" value="Show List"/>
+
+</div>
+<div>
+<p>  
+
+    @Html.TextBox("personId")  
+    
+    <!--<div onclick="myfun()" >Click Me</div>-->
+    
+    <input type="button" id="Search" value="Show Person"/>  
+     <input type="submit" id="Remove" value="Delete Person"/> 
+    <span id="msg" />  
+</div>
+<div id="Data"></div> 
+
+
+<script type="text/javascript">
+    //Deletefunktion
+ $('#Remove').click(function () {  
+     
+     var url = "/Ajax/Remove";  
+        var name = $("#personId").val();  
+         
+        $.post(url, { PersonId: name }, function (data) {  
+            $("#Data").html(data);  
+        });  
+    })      
+
+</script>
+
+<script type="text/javascript">
+    //Sökfunktion
+ $('#Search').click(function () {  
+        var url = "/Ajax/IdPerson";  
+        var name = $("#personId").val();  
+         
+        $.post(url, { PersonId: name }, function (data) {  
+            $("#Data").html(data);  
+        });  
+    })      
+
+        
+</script>
+
+<script type="text/javascript"> 
+$(document).ready(function () {
+        
+$('#PList').on('click', function () {
+    $.ajax({
+
+        url: '/Ajax/PeopleList',
+        type: 'GET',
+        success: function (data) {
+            $('#Data').html(data);
+        }
+    });
+});
+        })
+</script>

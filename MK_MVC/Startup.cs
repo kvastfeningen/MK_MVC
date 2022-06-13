@@ -43,7 +43,15 @@ namespace MK_MVC
 			app.UseEndpoints(endpoints =>
 
 			{
-			endpoints.MapControllerRoute(
+
+				endpoints.MapControllerRoute(
+					name: "ajax",
+					 pattern: "Ajax",
+					defaults: new { controller = "Ajax", action = "Index" }
+
+				);
+
+				endpoints.MapControllerRoute(
 				name: "person",
 				 pattern: "Person",
 				defaults: new { controller = "Person", action = "Index" }
