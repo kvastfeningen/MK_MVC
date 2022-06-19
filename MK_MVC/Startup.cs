@@ -7,6 +7,9 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using MK_MVC.Data;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 
 namespace MK_MVC
 {
@@ -14,16 +17,26 @@ namespace MK_MVC
 	{
 		// This method gets called by the runtime. Use this method to add services to the container.
 		// For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
+		private readonly IConfiguration Configuration;
+
+		public Startup(IConfiguration config)
+        {
+			Configuration = config;
+        }
+		
+		
 		public void ConfigureServices(IServiceCollection services)
 		{
 			services.AddMvc();
-
+		
 			services.AddSession(options =>
 			{
 				options.IdleTimeout = TimeSpan.FromMinutes(10);
 				options.Cookie.HttpOnly = true;
 				options.Cookie.IsEssential = true;
 			});
+			services.AddDbContext<ApplicationDbContext>(options =>
+			options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
 		}
 
 		// This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

@@ -22,13 +22,15 @@ namespace MK_MVC.ViewModels
 		[Required(ErrorMessage = "You must insert city!")]
 		public string City { get; set; }
 
-
+/*
 		public static void Add(Person newperson)
 		{
+			//_context.People.Add()
+			//_context.SaveChanges();
 			PeopleViewModel.People.Add(newperson);
 		}
 
-
+*/
 	}
 
 	

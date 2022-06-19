@@ -5,12 +5,19 @@ using MK_MVC.ViewModels;
 using System.Collections.Generic;
 using System.Linq;
 using System;
-using System.Web;
+using MK_MVC.Data;
 
 namespace MK_MVC.Controllers
 {
     public class AjaxController : Controller
     {
+        private readonly ApplicationDbContext _context;
+
+        public AjaxController(ApplicationDbContext context)
+        {
+            _context = context;
+        }
+
         public IActionResult Index()
         {
             return View();
@@ -18,7 +25,7 @@ namespace MK_MVC.Controllers
 
         public IActionResult PeopleList()
         {
-            var p = PeopleViewModel.People;
+            var p = _context.People.ToList();
             var viewModel = new PeopleViewModel()
             {
                 AllPeople = p
@@ -51,7 +58,7 @@ namespace MK_MVC.Controllers
         [HttpPost]
         public IActionResult IdPerson(int personId)
         {
-            var p = PeopleViewModel.People.Where(s => s.PersonId == personId).ToList(); //  || s.City.Contains(SearchWord)
+            var p = _context.People.Where(s => s.PersonId == personId).ToList(); //  || s.City.Contains(SearchWord)
 
             var viewModel = new PeopleViewModel()
             {
@@ -79,10 +86,13 @@ namespace MK_MVC.Controllers
         [HttpPost]
         public IActionResult Remove(int personId)
         {
-            PeopleViewModel.Remove(personId);
+            //PeopleViewModel.Remove(personId);
 
             //return RedirectToAction("Index");
-            //return PartialView("_PersonList2", viewMode);
+            //return PartialView("_PersonList2", viewModel);
+            var personToRemove = _context.People.Find(personId);
+            _context.People.Remove(personToRemove);
+            _context.SaveChanges();
             return Content("The person is removed!");
         }
         
