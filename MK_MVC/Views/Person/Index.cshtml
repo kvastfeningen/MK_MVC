@@ -1,10 +1,11 @@
-﻿@model MK_MVC.ViewModels.PeopleViewModel;
-@using MK_MVC.Models
+﻿
+@model MK_MVC.ViewModels.PeopleViewModel;
+@using MK_MVC.Models;
 
 @{
     ViewData["Title"] = "Index";
 }
-
+<a asp-action="/PersonLanguage/Create">Add Language to Person</a>
 <p>
     @using (Html.BeginForm("Index", "Person", FormMethod.Post))
 {
@@ -32,8 +33,11 @@
     </div>
     <div class="form-group">
     <label asp-for="City"></label><br>
+    @* @Html.DropDownListFor(m => m.CityId, Model.Cities) *@
+   @* @Html.DropDownListFor(x => Model.CityId, new SelectList(Model.CityId, "Value", "Text"), htmlAttributes: new { @class = "form-control", id = "CityId"})*@
+    <!--<select name="cityid" asp-items="ViewBag.Cities"></select><br>-->
     <input asp-for="City" /><br>
-    <span asp-validation-for="City"></span>
+    
     </div><br>
     <input type="submit" value="Add person" /><br>
 </form>

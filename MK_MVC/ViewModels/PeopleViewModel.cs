@@ -38,7 +38,8 @@ namespace MK_MVC.ViewModels
 		public int PersonId { get; set; }
 		public string Name { get; set; }
 		public string Phone { get; set; }
-		public string City { get; set; }
+
+		public City City { get; set; }
 		
 		/*
 		public static void Remove(int personId)

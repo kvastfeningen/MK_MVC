@@ -1,0 +1,13 @@
+﻿@model Country;
+
+@{
+    ViewData["Title"] = "Add Country";
+}
+
+<form asp-controller="Country" asp-action="Create">
+    <div class="form-group">
+    <label asp-for="CountryName"></label><br>
+    <input asp-for="CountryName" /><br>
+    </div>
+    <input type="submit" value="Add Country" /><br>
+</form>

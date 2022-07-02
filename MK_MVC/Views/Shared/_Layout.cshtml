@@ -9,27 +9,51 @@
 </head>
 <body>
 	<header>
-		
 
 
-		<ul>
-  <li>
-   <img src="/mkloggaA40.png" alt="MK Logga">
-    </li>
-  <li>
-    <li>@Html.ActionLink("Index", "Index")</li>
-    
-	<li>@Html.ActionLink("Contact", "Contact")</li>
-  
-	 <li>@Html.ActionLink("About", "About")</li>
+		<nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-dark bg-dark border-bottom box-shadow mb-3">
+  <div class="container">
+    <a class="navbar-brand" href="#"> <img src="/mkloggaA40.png" alt="MK Logga"></a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse d-inline-flex flex-sm-row-reverse" id="navbarNav">
+      <ul class="navbar-nav flex-grow-1">
+          <li class="nav-item">
+        <a class="nav-item nav-link px-6" asp-controller="Home" asp-action="Index">Home</a>
+         </li> 
+        <li class="nav-item">
+          <a class="nav-item nav-link px-6" asp-controller="Contact" asp-action="Contact">Contact</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-item nav-link px-6" asp-controller="About" asp-action="About">About</a>
+        </li>
+        <li class="nav-item">
+         <a class="nav-item nav-link px-6" asp-controller="Projects" asp-action="Projects">Projects</a>
+          <li class="nav-item">
+         <a class="nav-item nav-link px-6" asp-controller="Person" asp-action="Index">Person</a>
+        </li>
+         <li class="nav-item">
+         <a class="nav-item nav-link px-6" asp-controller="Ajax" asp-action="Index">Ajax</a>
+        </li>
+         <li class="nav-item">
+         <a class="nav-item nav-link px-6" asp-controller="Country" asp-action="Index">Country</a>
+        </li>
+         <li class="nav-item">
+         <a class="nav-item nav-link px-6" asp-controller="City" asp-action="Index">City</a>
+        </li>
+        /li>
+         <li class="nav-item">
+         <a class="nav-item nav-link px-6" asp-controller="PersonLanguage" asp-action="Create">PersonLanguage</a>
+        </li>
+       
+      </ul>
+    </div>
+  </div>
+</nav>
 
-   <li>@Html.ActionLink("Projects", "Projects")</li>
-
-   <li>@Html.ActionLink("Person", "Index", "Person")</li>
-
-    <li>@Html.ActionLink("Ajax", "Index", "Ajax")</li>
-    
-</ul>
+<!--//Här är brytet-->
+	
 	</header>
 	<div class="content">
 		

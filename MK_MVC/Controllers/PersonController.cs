@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System;
 using MK_MVC.Data;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace MK_MVC.Controllers
 {
@@ -22,7 +23,7 @@ namespace MK_MVC.Controllers
         {
            if(string.IsNullOrEmpty(SearchWord))
             {
-                List<Person> persons = _context.People.ToList();
+                //List<Person> persons = _context.People.ToList();
                  
                  var p = _context.People.ToList();
                  var viewModel = new PeopleViewModel()
@@ -35,7 +36,7 @@ namespace MK_MVC.Controllers
             else
             {
                
-                var p = _context.People?.Where(s => s.Name.Contains(SearchWord) || s.City.Contains(SearchWord)).ToList(); //  || s.City.Contains(SearchWord)
+                var p = _context.People?.Where(s => s.Name.Contains(SearchWord)).ToList(); //  || s.City.Contains(SearchWord)
 
                 var viewModel = new PeopleViewModel()
                 {
@@ -50,14 +51,27 @@ namespace MK_MVC.Controllers
 
         public IActionResult Add()
         {
-             
-            return RedirectToAction("Index");
+            ViewBag.Cities = new SelectList(_context.Cities.ToList(), "CityId", "CityName");
+
+/*
+            List<CreatePersonViewModel> items = _context.Cities.Select(m => new CreatePersonViewModel()
+            {
+                CityId = m.CityId,
+                CityName = m.CityName
+            }).ToList();
+*/
+
+
+            return View();
+           // return RedirectToAction("Index");
 
         }
 
         [HttpPost]
         public IActionResult Add(CreatePersonViewModel createPersonViewModel)
         {
+
+
 
             if (ModelState.IsValid)
             {

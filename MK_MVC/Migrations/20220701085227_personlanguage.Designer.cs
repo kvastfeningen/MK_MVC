@@ -3,14 +3,16 @@ using MK_MVC.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace MK_MVC.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20220701085227_personlanguage")]
+    partial class personlanguage
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -82,28 +84,6 @@ namespace MK_MVC.Migrations
                     b.HasKey("LanguageId");
 
                     b.ToTable("Languages");
-
-                    b.HasData(
-                        new
-                        {
-                            LanguageId = 1,
-                            LanguageName = "Swedish"
-                        },
-                        new
-                        {
-                            LanguageId = 2,
-                            LanguageName = "Finnish"
-                        },
-                        new
-                        {
-                            LanguageId = 3,
-                            LanguageName = "English"
-                        },
-                        new
-                        {
-                            LanguageId = 4,
-                            LanguageName = "Swahili"
-                        });
                 });
 
             modelBuilder.Entity("MK_MVC.Models.Person", b =>
@@ -143,34 +123,6 @@ namespace MK_MVC.Migrations
                             CityId = 1,
                             Name = "Benny Guldfot",
                             Phone = "031-128140"
-                        },
-                        new
-                        {
-                            PersonId = 3,
-                            CityId = 6,
-                            Name = "Johnny Puma",
-                            Phone = "128141"
-                        },
-                        new
-                        {
-                            PersonId = 4,
-                            CityId = 7,
-                            Name = "Alvar Aalto",
-                            Phone = "128142"
-                        },
-                        new
-                        {
-                            PersonId = 5,
-                            CityId = 1,
-                            Name = "Kalle Kula",
-                            Phone = "128143"
-                        },
-                        new
-                        {
-                            PersonId = 6,
-                            CityId = 7,
-                            Name = "Urho Kekkonen",
-                            Phone = "128144"
                         });
                 });
 
