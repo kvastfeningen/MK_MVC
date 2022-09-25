@@ -51,7 +51,7 @@ namespace MK_MVC.Controllers
 
         public IActionResult Add()
         {
-            ViewBag.Cities = new SelectList(_context.Cities.ToList(), "CityId", "CityName");
+            //ViewBag.Cities = new SelectList(_context.Cities.ToList(), "CityId", "CityName");
 
 /*
             List<CreatePersonViewModel> items = _context.Cities.Select(m => new CreatePersonViewModel()

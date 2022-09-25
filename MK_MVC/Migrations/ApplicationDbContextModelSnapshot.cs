@@ -43,6 +43,24 @@ namespace MK_MVC.Migrations
                             CityId = 1,
                             CityName = "Göteborg",
                             CountryId = 1
+                        },
+                        new
+                        {
+                            CityId = 2,
+                            CityName = "Reykjavik",
+                            CountryId = 2
+                        },
+                        new
+                        {
+                            CityId = 3,
+                            CityName = "Helsinki",
+                            CountryId = 3
+                        },
+                        new
+                        {
+                            CityId = 4,
+                            CityName = "Leeds",
+                            CountryId = 4
                         });
                 });
 
@@ -65,6 +83,21 @@ namespace MK_MVC.Migrations
                         {
                             CountryId = 1,
                             CountryName = "Sweden"
+                        },
+                        new
+                        {
+                            CountryId = 2,
+                            CountryName = "Iceland"
+                        },
+                        new
+                        {
+                            CountryId = 3,
+                            CountryName = "Finland"
+                        },
+                        new
+                        {
+                            CountryId = 4,
+                            CountryName = "Great Britain"
                         });
                 });
 
@@ -147,28 +180,28 @@ namespace MK_MVC.Migrations
                         new
                         {
                             PersonId = 3,
-                            CityId = 6,
+                            CityId = 2,
                             Name = "Johnny Puma",
                             Phone = "128141"
                         },
                         new
                         {
                             PersonId = 4,
-                            CityId = 7,
+                            CityId = 3,
                             Name = "Alvar Aalto",
                             Phone = "128142"
                         },
                         new
                         {
                             PersonId = 5,
-                            CityId = 1,
+                            CityId = 4,
                             Name = "Kalle Kula",
                             Phone = "128143"
                         },
                         new
                         {
                             PersonId = 6,
-                            CityId = 7,
+                            CityId = 3,
                             Name = "Urho Kekkonen",
                             Phone = "128144"
                         });

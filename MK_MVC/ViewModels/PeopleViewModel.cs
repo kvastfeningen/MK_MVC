@@ -40,6 +40,8 @@ namespace MK_MVC.ViewModels
 		public string Phone { get; set; }
 
 		public City City { get; set; }
+
+		//public City CityName { get; set; }
 		
 		/*
 		public static void Remove(int personId)
