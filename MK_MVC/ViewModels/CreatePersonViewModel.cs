@@ -22,7 +22,9 @@ namespace MK_MVC.ViewModels
 
 		[Required(ErrorMessage = "You must insert city!")]
 		public City City { get; set; }
-		public List<SelectListItem> Cities { get; set; }
+
+        public int CityId { get; set; }
+        public List<SelectListItem> Cities { get; set; }
 		/*
 				public static void Add(Person newperson)
 				{

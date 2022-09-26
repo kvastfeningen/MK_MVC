@@ -7,6 +7,7 @@ using System.Linq;
 using System;
 using MK_MVC.Data;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.EntityFrameworkCore;
 
 namespace MK_MVC.Controllers
 {
@@ -25,18 +26,19 @@ namespace MK_MVC.Controllers
             {
                 //List<Person> persons = _context.People.ToList();
                  
-                 var p = _context.People.ToList();
+                 var p = _context.People.Include(p=>p.City).ToList();
                  var viewModel = new PeopleViewModel()
 
                  {
                      AllPeople = p
                  };
+                ViewBag.Cities = ViewBag.Cities = new SelectList(_context.Cities, "CityId", "CityName");
                 return View(viewModel);
             }
             else
             {
                
-                var p = _context.People?.Where(s => s.Name.Contains(SearchWord)).ToList(); //  || s.City.Contains(SearchWord)
+                var p = _context.People?.Include(p => p.City).Where(s => s.Name.Contains(SearchWord)).ToList(); //  || s.City.Contains(SearchWord)
 
                 var viewModel = new PeopleViewModel()
                 {
@@ -53,16 +55,16 @@ namespace MK_MVC.Controllers
         {
             //ViewBag.Cities = new SelectList(_context.Cities.ToList(), "CityId", "CityName");
 
-/*
-            List<CreatePersonViewModel> items = _context.Cities.Select(m => new CreatePersonViewModel()
-            {
-                CityId = m.CityId,
-                CityName = m.CityName
-            }).ToList();
-*/
+            /*
+                        List<CreatePersonViewModel> items = _context.Cities.Select(m => new CreatePersonViewModel()
+                        {
+                            CityId = m.CityId,
+                            CityName = m.CityName
+                        }).ToList();
+            */
+            return RedirectToAction("Index");
 
-
-            return View();
+            //return View();
            // return RedirectToAction("Index");
 
         }
@@ -70,30 +72,28 @@ namespace MK_MVC.Controllers
         [HttpPost]
         public IActionResult Add(CreatePersonViewModel createPersonViewModel)
         {
-
-
-
+             ModelState.Remove("City");
             if (ModelState.IsValid)
             {
-                
-                Person newPerson = new Person
-                {
-                    PersonId = createPersonViewModel.PersonId,
-                    Name = createPersonViewModel.Name,
-                    Phone = createPersonViewModel.Phone,
-                    City = createPersonViewModel.City
-                };
-
-                //CreatePersonViewModel.Add(newPerson);
-                _context.People.Add(newPerson);
-              _context.SaveChanges();
                 return RedirectToAction("Index");
-              
+
             }
-            
+
+            Person newPerson = new Person
+            {
+                PersonId = createPersonViewModel.PersonId,
+                Name = createPersonViewModel.Name,
+                Phone = createPersonViewModel.Phone,
+                CityId = createPersonViewModel.CityId
+            };
+
+            //CreatePersonViewModel.Add(newPerson);
+            _context.People.Add(newPerson);
+            _context.SaveChanges();
             return RedirectToAction("Index");
         }
-        
+
+
         public IActionResult Remove(int Id)
         {
             // PeopleViewModel.Remove(Id);

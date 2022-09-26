@@ -21,6 +21,7 @@ namespace MK_MVC.Models
         public List<Person> People { get; set; }
 
         public int CountryId { get; set; }
+        
         public Country Country { get; set; }
 
 

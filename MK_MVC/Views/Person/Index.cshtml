@@ -33,11 +33,11 @@
     </div>
 
     <div class="form-group">
-    <label asp-for="City"></label><br>
+    <label asp-for="City.CityId"></label><br>
     @* @Html.DropDownListFor(m => m.CityId, Model.Cities) *@
    @* @Html.DropDownListFor(x => Model.CityId, new SelectList(Model.CityId, "Value", "Text"), htmlAttributes: new { @class = "form-control", id = "CityId"})*@
     <!--<select name="cityid" asp-items="ViewBag.Cities"></select><br>-->
-    <input asp-for="City" /><br>
+        <input asp-for="City.CityId" asp-items="ViewBag.Cities" /><br>
     
     </div><br>
     <input type="submit" value="Add person" /><br>
