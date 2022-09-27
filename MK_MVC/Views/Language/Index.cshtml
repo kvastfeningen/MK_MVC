@@ -1,0 +1,32 @@
+﻿@*@model MK_MVC.ViewModels.PeopleViewModel;
+using MK_MVC.Models*@
+@model IEnumerable<Language>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<a asp-action="Create">Add Language</a>
+<br />
+<br />
+<br />
+<table class="table">
+    <thead>
+        <tr>
+            <!--<th>City Id</th>-->
+            <th>Language</th>
+            
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.LanguageName</td>
+                @*<td>@item.LanguageName</td>*@
+                
+                <td>  </td>
+            </tr>
+        }
+    </tbody>
+</table>

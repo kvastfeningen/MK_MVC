@@ -1,4 +1,4 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿ using Microsoft.EntityFrameworkCore;
 using MK_MVC.Models;
 
 namespace MK_MVC.Data
@@ -53,6 +53,10 @@ namespace MK_MVC.Data
             modelBuilder.Entity<Person>().HasData(new Person { PersonId = 4, Name = "Alvar Aalto", Phone = "128142", CityId = 3 });
             modelBuilder.Entity<Person>().HasData(new Person { PersonId = 5, Name = "Kalle Kula", Phone = "128143", CityId = 4 });
             modelBuilder.Entity<Person>().HasData(new Person { PersonId = 6, Name = "Urho Kekkonen", Phone = "128144", CityId = 3 });
+
+            modelBuilder.Entity<PersonLanguage>().HasData(new PersonLanguage { LanguageId = 1, PersonId = 2 });
+            modelBuilder.Entity<PersonLanguage>().HasData(new PersonLanguage { LanguageId = 3, PersonId = 1 });
+            modelBuilder.Entity<PersonLanguage>().HasData(new PersonLanguage { LanguageId = 3, PersonId = 2 });
 
 
         }

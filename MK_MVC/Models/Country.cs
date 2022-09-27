@@ -16,7 +16,7 @@ namespace MK_MVC.Models
         public int CountryId { get; set; }
         public string CountryName { get; set; }
 
-        
+        //public int CityId { get; set; }
         public List<City> Cities { get; set; }
     }
 }

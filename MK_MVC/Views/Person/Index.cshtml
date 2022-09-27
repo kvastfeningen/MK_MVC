@@ -3,6 +3,7 @@
 @using MK_MVC.Models;
 
 @{
+    string l = "";
     ViewData["Title"] = "Index";
 }
 <a asp-action="/PersonLanguage/Create">Add Language to Person</a>
@@ -33,11 +34,10 @@
     </div>
 
     <div class="form-group">
-    <label asp-for="City.CityId"></label><br>
-    @* @Html.DropDownListFor(m => m.CityId, Model.Cities) *@
-   @* @Html.DropDownListFor(x => Model.CityId, new SelectList(Model.CityId, "Value", "Text"), htmlAttributes: new { @class = "form-control", id = "CityId"})*@
-    <!--<select name="cityid" asp-items="ViewBag.Cities"></select><br>-->
-        <input asp-for="City.CityId" asp-items="ViewBag.Cities" /><br>
+    <label asp-for="City"></label><br>
+        <select asp-for="City.CityId" asp-items="ViewBag.Cities"><option value="selected disabled">Select City</option></select><br>
+        <!--<select name="cityId" class="form-control" asp-items="ViewBag.CityNames"><option value="" selected disabled>Select City</option></select>-->
+        <!--<input asp-for="City.CityId" asp-items="ViewBag.Cities" /><br>-->
     
     </div><br>
     <input type="submit" value="Add person" /><br>
@@ -55,8 +55,10 @@
     <thead>
         <tr><th>  </th>
             <th>     </th>
-            <th>@Html.DisplayNameFor(model => model.PersonId)</th>
+             <th>         </th>
+           <!-- <th>@Html.DisplayNameFor(model => model.PersonId)</th> -->
             <th>@Html.DisplayNameFor(model => model.Name)</th>
+            <th>Languages</th>
             <th>@Html.DisplayNameFor(model => model.Phone)</th>
             <th>@Html.DisplayNameFor(model => model.City)</th>
    </tr>
@@ -64,6 +66,7 @@
     <tr>
     @foreach (var item in Model?.AllPeople)
         {
+           
             <partial name="_Person" model="item" />
         }
      </tr>

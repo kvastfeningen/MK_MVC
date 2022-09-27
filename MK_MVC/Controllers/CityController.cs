@@ -8,6 +8,7 @@ using System;
 using MK_MVC.Data;
 using System.ComponentModel.DataAnnotations;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.EntityFrameworkCore;
 
 namespace MK_MVC.Controllers
 {
@@ -22,7 +23,7 @@ namespace MK_MVC.Controllers
 
         public IActionResult Index()
         {
-            List<City> listOfCities = _context.Cities.ToList();
+            List<City> listOfCities = _context.Cities.Include(p => p.Country).Include(r => r.People).ToList();
             return View(listOfCities);
         }
 

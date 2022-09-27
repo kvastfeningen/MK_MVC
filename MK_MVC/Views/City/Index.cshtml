@@ -3,27 +3,41 @@
 @model IEnumerable<City>
 
 @{
+    string personer = "";
     ViewData["Title"] = "Index";
 }
 
 <a asp-action="Create">Add City</a>
 <br />
+<br />
+<br />
 <table class="table">
     <thead>
         <tr>
-            <th>City Id</th>
+            <!--<th>City Id</th>-->
             <th>City</th>
+            <th>People</th>
             <th>Country</th>
         </tr>
     </thead>
     <tbody>
-        @foreach ( var item in Model)
+        @foreach (var item in Model)
         {
+            personer = "";
             <tr>
-                <td>@item.CityId</td>
+
                 <td>@item.CityName</td>
-                <td>@item.CountryId</td>
+                <td>
+                    @foreach (var pers in item.People)
+                    {
+                        personer = personer + pers.Name + " ";
+                    }
+                    @personer
+                </td>
+                <td>@item.Country.CountryName</td>
+                <td> </td>
             </tr>
+          
         }
     </tbody>
 </table>

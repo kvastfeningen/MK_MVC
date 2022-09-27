@@ -38,8 +38,8 @@ namespace MK_MVC.ViewModels
 		public int PersonId { get; set; }
 		public string Name { get; set; }
 		public string Phone { get; set; }
-
-		public City City { get; set; }
+        //public int CityId { get; set; }
+        public City City { get; set; }
 
 		//public City CityName { get; set; }
 		

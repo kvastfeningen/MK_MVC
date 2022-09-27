@@ -1,0 +1,13 @@
+﻿@model Language;
+
+@{
+    ViewData["Title"] = "Add Language";
+}
+
+<form asp-controller="Language" asp-action="Create">
+    <div class="form-group">
+        <label asp-for="LanguageName"></label><br>
+        <input asp-for="LanguageName" /><br>
+    </div>
+    <input type="submit" value="Add Language" /><br>
+</form>

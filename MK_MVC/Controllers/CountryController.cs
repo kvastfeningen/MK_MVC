@@ -6,6 +6,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System;
 using MK_MVC.Data;
+using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.EntityFrameworkCore;
 
 namespace MK_MVC.Controllers
 {
@@ -20,7 +22,8 @@ namespace MK_MVC.Controllers
 
         public IActionResult Index()
         {
-            List<Country> listOfCountries = _context.Countries.ToList();
+            //List<City> listOfCities = _context.Cities.Include(p => p.Country).Include(r => r.People).ToList();
+            List<Country> listOfCountries = _context.Countries.Include(c => c.Cities).ToList();
             return View(listOfCountries);
         }
 

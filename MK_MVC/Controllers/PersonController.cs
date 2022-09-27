@@ -22,31 +22,33 @@ namespace MK_MVC.Controllers
 
         public IActionResult Index(string SearchWord)
         {
-           if(string.IsNullOrEmpty(SearchWord))
+            if (string.IsNullOrEmpty(SearchWord))
             {
                 //List<Person> persons = _context.People.ToList();
-                 
-                 var p = _context.People.Include(p=>p.City).ToList();
-                 var viewModel = new PeopleViewModel()
 
-                 {
-                     AllPeople = p
-                 };
-                ViewBag.Cities = ViewBag.Cities = new SelectList(_context.Cities, "CityId", "CityName");
+                var p = _context.People.Include(p => p.City).ToList();
+
+                var viewModel = new PeopleViewModel()
+
+                {
+                    AllPeople = p
+                };
+
+                ViewBag.Cities = new SelectList(_context.Cities, "CityId", "CityName");
                 return View(viewModel);
             }
             else
             {
-               
+
                 var p = _context.People?.Include(p => p.City).Where(s => s.Name.Contains(SearchWord)).ToList(); //  || s.City.Contains(SearchWord)
 
                 var viewModel = new PeopleViewModel()
                 {
                     AllPeople = p
                 };
-               
+
                 return View(viewModel);
-              
+
             }
         }
 
@@ -65,32 +67,30 @@ namespace MK_MVC.Controllers
             return RedirectToAction("Index");
 
             //return View();
-           // return RedirectToAction("Index");
+            // return RedirectToAction("Index");
 
         }
 
         [HttpPost]
         public IActionResult Add(CreatePersonViewModel createPersonViewModel)
         {
-             ModelState.Remove("City");
+            ModelState.Remove("CityId");
             if (ModelState.IsValid)
             {
-                return RedirectToAction("Index");
+                Person newPerson = new Person
+                {
+                    PersonId = createPersonViewModel.PersonId,
+                    Name = createPersonViewModel.Name,
+                    Phone = createPersonViewModel.Phone,
+                    CityId = createPersonViewModel.City.CityId
+                };
 
+                //CreatePersonViewModel.Add(newPerson);
+                _context.People.Add(newPerson);
+                _context.SaveChanges();
             }
-
-            Person newPerson = new Person
-            {
-                PersonId = createPersonViewModel.PersonId,
-                Name = createPersonViewModel.Name,
-                Phone = createPersonViewModel.Phone,
-                CityId = createPersonViewModel.CityId
-            };
-
-            //CreatePersonViewModel.Add(newPerson);
-            _context.People.Add(newPerson);
-            _context.SaveChanges();
             return RedirectToAction("Index");
+
         }
 
 
@@ -100,9 +100,9 @@ namespace MK_MVC.Controllers
             var personToRemove = _context.People.Find(Id);
             _context.People.Remove(personToRemove);
             _context.SaveChanges();
-            
+
             return RedirectToAction("Index");
         }
-       
+
     }
 }

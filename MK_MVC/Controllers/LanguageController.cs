@@ -7,6 +7,7 @@ using System.Linq;
 using System;
 using MK_MVC.Data;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.EntityFrameworkCore;
 
 namespace MK_MVC.Controllers
 {
@@ -21,11 +22,27 @@ namespace MK_MVC.Controllers
 
         public IActionResult Index()
         {
+            List<Language> listOfLanguages = _context.Languages.ToList();
+            return View(listOfLanguages);
+        }
+
+        public IActionResult Create()
+        {
             return View();
         }
 
+        [HttpPost]
+        public IActionResult Create(Language language)
+        {
 
-
+            if (ModelState.IsValid)
+            {
+                _context.Languages.Add(language);
+                _context.SaveChanges();
+                return RedirectToAction("Index");
+            }
+            return View();
+        }
 
 
     }

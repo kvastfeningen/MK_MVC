@@ -3,15 +3,33 @@
    
 <table>
   <div class="row">
+        
       <div class="col">
-   <a asp-action="Remove" asp-route-id="@Model.PersonId">Remove</a>
+            <a asp-action="Remove" asp-route-id="@Model.PersonId">Remove  </a>
+            &nbsp;&nbsp;&nbsp;
+            
   </div>
-    <div class="col">
+  
+      
+  @*  <div class="col">
       @Model.PersonId
     </div>
+  *@
     <div class="col">
       @Model.Name
     </div>
+    @*
+        <div>
+            string l = "";
+           
+                @foreach (var lang in item.PersonLanguages)
+                {
+                    l = l + lang.LanguageName + " ";
+                }
+                @l
+   
+    </div>
+        *@
     <div class="col">
       @Model.Phone
     </div>
