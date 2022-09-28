@@ -10,6 +10,8 @@ using System.Threading.Tasks;
 using MK_MVC.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
+using MK_MVC.Models;
+using Microsoft.AspNetCore.Identity;
 
 namespace MK_MVC
 {
@@ -37,6 +39,11 @@ namespace MK_MVC
 			});
 			services.AddDbContext<ApplicationDbContext>(options =>
 			options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+
+			services.AddIdentity<ApplicationUser, IdentityRole>(options => options.SignIn.RequireConfirmedAccount = false)
+				.AddDefaultUI()
+				.AddDefaultTokenProviders()
+				.AddEntityFrameworkStores<ApplicationDbContext>();
 		}
 
 		// This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -50,6 +57,9 @@ namespace MK_MVC
 			app.UseStaticFiles();
 
 			app.UseRouting();
+
+			app.UseAuthentication();
+			app.UseAuthorization();
 
 			app.UseSession();
 
@@ -90,6 +100,7 @@ namespace MK_MVC
 					name: "default",
 					pattern: "{controller=Home}/{action=Index}/{id?}"
 					);
+				endpoints.MapRazorPages();  
 		});
 			
 		}

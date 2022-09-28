@@ -13,11 +13,15 @@
 
 		<nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-dark bg-dark border-bottom box-shadow mb-3">
   <div class="container">
+
     <a class="navbar-brand" href="#"> <img src="/mkloggaA40.png" alt="MK Logga"></a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse d-inline-flex flex-sm-row-reverse" id="navbarNav">
+        
+        <partial name=_LoginPartial />
+
       <ul class="navbar-nav flex-grow-1">
           <li class="nav-item">
         <a class="nav-item nav-link px-6" asp-controller="Home" asp-action="Index">Home</a>
@@ -64,7 +68,7 @@
 		<footer>@DateTime.Now.ToString("dddd, dd MMMM yyyy") &copy; @ViewBag.Name  </footer>
 	</div>
 
-
+    @RenderSection("Scripts", required:false)
 </body>
 
  </html>
