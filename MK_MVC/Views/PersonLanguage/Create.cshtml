@@ -5,15 +5,13 @@
 
 <form asp-controller="PersonLanguage" asp-action="Create" method="post">
     
+    <div class="form-group">
+    <select name="personid" asp-items="ViewBag.People"></select><br><br>
+    </div>
     
     <div class="form-group">
-    <select name="languageid" asp-items="ViewBag.Language"></select>
+        <select name="languageid" asp-items="ViewBag.Language"></select><br><br>
     </div>
-
-     <div class="form-group">
-    <select name="personid" asp-items="ViewBag.People"></select>
-    </div>
-    <!--   -->
   
-    <input type="submit" value="Add  Language to Person" /><br>
+    <input type="submit" value="Add  Language to Person"><br><br>
 </form>

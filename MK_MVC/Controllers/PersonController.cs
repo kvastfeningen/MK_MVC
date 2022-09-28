@@ -26,7 +26,7 @@ namespace MK_MVC.Controllers
             {
                 //List<Person> persons = _context.People.ToList();
 
-                var p = _context.People.Include(p => p.City).ToList();
+                var p = _context.People.Include(pl => pl.PersonLanguages).Include(p => p.City).ToList();
 
                 var viewModel = new PeopleViewModel()
 
@@ -55,20 +55,10 @@ namespace MK_MVC.Controllers
 
         public IActionResult Add()
         {
-            //ViewBag.Cities = new SelectList(_context.Cities.ToList(), "CityId", "CityName");
-
-            /*
-                        List<CreatePersonViewModel> items = _context.Cities.Select(m => new CreatePersonViewModel()
-                        {
-                            CityId = m.CityId,
-                            CityName = m.CityName
-                        }).ToList();
-            */
+           
             return RedirectToAction("Index");
 
-            //return View();
-            // return RedirectToAction("Index");
-
+           
         }
 
         [HttpPost]
@@ -85,7 +75,6 @@ namespace MK_MVC.Controllers
                     CityId = createPersonViewModel.City.CityId
                 };
 
-                //CreatePersonViewModel.Add(newPerson);
                 _context.People.Add(newPerson);
                 _context.SaveChanges();
             }

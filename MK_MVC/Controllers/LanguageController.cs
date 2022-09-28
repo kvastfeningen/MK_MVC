@@ -22,7 +22,8 @@ namespace MK_MVC.Controllers
 
         public IActionResult Index()
         {
-            List<Language> listOfLanguages = _context.Languages.ToList();
+            List<Language> listOfLanguages = _context.Languages.Include(p => p.PersonLanguages).ToList();
+            //.Include(p => p.People).Where(s => s.Name.Contains(SearchWord))
             return View(listOfLanguages);
         }
 

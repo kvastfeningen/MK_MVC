@@ -22,7 +22,6 @@ namespace MK_MVC.Controllers
 
         public IActionResult Index()
         {
-            //List<City> listOfCities = _context.Cities.Include(p => p.Country).Include(r => r.People).ToList();
             List<Country> listOfCountries = _context.Countries.Include(c => c.Cities).ToList();
             return View(listOfCountries);
         }

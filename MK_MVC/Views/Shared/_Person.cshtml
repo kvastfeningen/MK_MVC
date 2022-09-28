@@ -18,18 +18,22 @@
     <div class="col">
       @Model.Name
     </div>
-    @*
+     @*
         <div>
-            string l = "";
-           
-                @foreach (var lang in item.PersonLanguages)
-                {
-                    l = l + lang.LanguageName + " ";
-                }
-                @l
+            @foreach (var item in Model)
+            {
+               string  l = "";
+        
+                        @foreach (var pers in item.PersonLanguages)
+                        {
+                            l = l + pers.LanguageId + " ";
+                        }
+                        @l
+            
+            }
    
     </div>
-        *@
+   *@    
     <div class="col">
       @Model.Phone
     </div>

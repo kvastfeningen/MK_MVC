@@ -3,6 +3,7 @@ using MK_MVC.Models*@
 @model IEnumerable<Language>
 
 @{
+    string personer = "";
     ViewData["Title"] = "Index";
 }
 
@@ -15,15 +16,22 @@ using MK_MVC.Models*@
         <tr>
             <!--<th>City Id</th>-->
             <th>Language</th>
-            
+            <th>People</th>
         </tr>
     </thead>
     <tbody>
         @foreach (var item in Model)
         {
+            personer = "";
             <tr>
                 <td>@item.LanguageName</td>
-                @*<td>@item.LanguageName</td>*@
+                <td>
+                    @foreach (var pers in item.PersonLanguages)
+                    {
+                        personer = personer + pers.PersonId + ",  ";
+                    }
+                    @personer
+                </td>
                 
                 <td>  </td>
             </tr>

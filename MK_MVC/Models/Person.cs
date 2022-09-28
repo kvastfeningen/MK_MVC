@@ -23,7 +23,7 @@ namespace MK_MVC.Models
        public int CityId { get; set; }
         public City City { get; set; }
 
-        
+        //public List<Language> Languages { get; set; }
         public List<PersonLanguage> PersonLanguages { get; set; }
 
         
