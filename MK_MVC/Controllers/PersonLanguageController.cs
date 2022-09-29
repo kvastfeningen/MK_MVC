@@ -8,10 +8,12 @@ using System;
 using MK_MVC.Data;
 using System.ComponentModel.DataAnnotations;
 using Microsoft.AspNetCore.Mvc.Rendering;
-
+using System.Data;
+using Microsoft.AspNetCore.Authorization;
 
 namespace MK_MVC.Controllers
 {
+    [Authorize(Roles = "Admin, User")]
     public class PersonLanguageController : Controller
     {
 

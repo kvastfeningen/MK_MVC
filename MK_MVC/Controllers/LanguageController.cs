@@ -8,9 +8,12 @@ using System;
 using MK_MVC.Data;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Authorization;
+using System.Data;
 
 namespace MK_MVC.Controllers
 {
+    [Authorize(Roles = "Admin")]
     public class LanguageController : Controller
     {
         private readonly ApplicationDbContext _context;
@@ -22,7 +25,8 @@ namespace MK_MVC.Controllers
 
         public IActionResult Index()
         {
-            List<Language> listOfLanguages = _context.Languages.Include(p => p.PersonLanguages).ToList();
+            List<Language> listOfLanguages = _context.Languages.Include(pl => pl.PersonLanguages).ToList();
+           // List<PersonLanguage> listOfPersonLanguages = _context.PersonLanguages.Include(p => p.People).ToList();
             //.Include(p => p.People).Where(s => s.Name.Contains(SearchWord))
             return View(listOfLanguages);
         }

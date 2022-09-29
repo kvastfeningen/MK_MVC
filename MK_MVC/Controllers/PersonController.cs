@@ -8,9 +8,12 @@ using System;
 using MK_MVC.Data;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Authorization;
+using System.Data;
 
 namespace MK_MVC.Controllers
 {
+    [Authorize(Roles = "Admin, User")]
     public class PersonController : Controller
     {
         private readonly ApplicationDbContext _context;

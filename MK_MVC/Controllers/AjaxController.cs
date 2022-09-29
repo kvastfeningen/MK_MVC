@@ -6,9 +6,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System;
 using MK_MVC.Data;
+using Microsoft.AspNetCore.Authorization;
+using System.Data;
 
 namespace MK_MVC.Controllers
 {
+    [Authorize(Roles = "Admin")]
     public class AjaxController : Controller
     {
         private readonly ApplicationDbContext _context;
