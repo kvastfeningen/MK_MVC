@@ -11,13 +11,11 @@ namespace MK_MVC.ViewModels
 	
 	public class CreatePersonViewModel
 	{
-		//public List<SelectListItem> Cities { get; set; }
 		public int PersonId { get; set; }
 
 		[Required(ErrorMessage = "You must insert name!")]
 		public string Name { get; set; }
 
-		
 		public string Phone { get; set; }
 
 		[Required(ErrorMessage = "You must insert city!")]
@@ -25,16 +23,7 @@ namespace MK_MVC.ViewModels
 
         public int CityId { get; set; }
         public List<SelectListItem> Cities { get; set; }
-		/*
-				public static void Add(Person newperson)
-				{
-					//_context.People.Add()
-					//_context.SaveChanges();
-					PeopleViewModel.People.Add(newperson);
-				}
-
-		*/
+		
 	}
 
-	
 }

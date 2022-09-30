@@ -10,6 +10,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Authorization;
 using System.Data;
+using System.Net;
 
 namespace MK_MVC.Controllers
 {
@@ -25,9 +26,13 @@ namespace MK_MVC.Controllers
 
         public IActionResult Index()
         {
-            List<Language> listOfLanguages = _context.Languages.Include(pl => pl.PersonLanguages).ToList();
-           // List<PersonLanguage> listOfPersonLanguages = _context.PersonLanguages.Include(p => p.People).ToList();
-            //.Include(p => p.People).Where(s => s.Name.Contains(SearchWord))
+            List<Language> listOfLanguages = _context.Languages
+                .Include(pl => pl.PersonLanguages)
+                .ToList();
+
+            //List<PersonLanguage> listOfPersonLanguages = _context.PersonLanguages.Include(p => p.People).ToList();
+            //List<Person> listOfPersonLanguages = _context.People.Include(p => p.PersonLanguages).ToList();
+            
             return View(listOfLanguages);
         }
 
@@ -49,6 +54,22 @@ namespace MK_MVC.Controllers
             return View();
         }
 
+        public IActionResult Details()
+        {
+            var viewModel = new ShowLanguageViewModel();
+            viewModel.Languages = _context.Languages
+                .Include(pl => pl.PersonLanguages.Select(i=>i.PersonId))
+                .Include(p=>p.PersonLanguages);
+
+            return View(viewModel);;
+        }
 
     }
 }
+
+/*
+ShowLanguageViewModel showLanguageViewModel = new ShowLanguageViewModel()
+            {
+               
+            };
+/*
