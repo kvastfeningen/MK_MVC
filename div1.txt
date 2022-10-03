@@ -1,0 +1,37 @@
+
+
+Diverse kod till LanguageController
+
+ //var viewModel = new ShowLanguageViewModel();
+          //  viewModel.Languages = _context.Languages
+          //      .Include(pl => pl.PersonLanguages.Select(p => p.PersonId))
+           //     .OrderBy(i => i.LanguageName);
+
+
+ // ViewBag.PersonID = PersonLanguage.PersonID;
+            // viewModel.Enrollments = viewModel.Courses.Where(
+            //    x => x.CourseID == courseID).Single().Enrollments;
+
+
+/*
+            List<Language> listOfLanguages = _context.Languages
+                .Include(pl => pl.PersonLanguages)
+                .ToList();
+            */
+            //List<PersonLanguage> listOfPersonLanguages = _context.PersonLanguages.Include(p => p.People).ToList();
+            //List<Person> listOfPersonLanguages = _context.People.Include(p => p.PersonLanguages).ToList();
+
+            //return View(listOfLanguages);
+
+
+
+ var viewModel = (from a in _context.PersonLanguages
+                        join b in _context.Languages on a.LanguageId equals b.LanguageId
+                        join c in _context.People on a.PersonId equals c.PersonId
+                        select new ShowLanguageViewModel
+                        {
+                            Language = b.LanguageName,  
+                            Name = c.Name,
+                           
+                        }).ToList();
+           

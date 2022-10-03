@@ -26,14 +26,24 @@ namespace MK_MVC.Controllers
 
         public IActionResult Index()
         {
-            List<Language> listOfLanguages = _context.Languages
-                .Include(pl => pl.PersonLanguages)
-                .ToList();
 
-            //List<PersonLanguage> listOfPersonLanguages = _context.PersonLanguages.Include(p => p.People).ToList();
-            //List<Person> listOfPersonLanguages = _context.People.Include(p => p.PersonLanguages).ToList();
+            var viewModel = (from a in _context.PersonLanguages
+                            join b in _context.Languages on a.LanguageId equals b.LanguageId
+                            join c in _context.People on a.PersonId equals c.PersonId
+                            select new ShowLanguageViewModel
+                            {
+                                Language = b.LanguageName,
+                                Name = c.Name,
+
+                            }).ToList();
+            /*
+                         List < Language > listOfLanguages = _context.Languages
+                 .Include(pl => pl.PersonLanguages)
+                 .ToList();
+               */
+
+            return View(viewModel);
             
-            return View(listOfLanguages);
         }
 
         public IActionResult Create()
@@ -53,17 +63,17 @@ namespace MK_MVC.Controllers
             }
             return View();
         }
-
+        /*
         public IActionResult Details()
         {
-            var viewModel = new ShowLanguageViewModel();
-            viewModel.Languages = _context.Languages
+            var vm = new ShowLanguageViewModel();
+            vm.Languages = _context.Languages
                 .Include(pl => pl.PersonLanguages.Select(i=>i.PersonId))
                 .Include(p=>p.PersonLanguages);
 
-            return View(viewModel);;
+            return View(vm);;
         }
-
+        */
     }
 }
 
@@ -72,4 +82,4 @@ ShowLanguageViewModel showLanguageViewModel = new ShowLanguageViewModel()
             {
                
             };
-/*
+*/
