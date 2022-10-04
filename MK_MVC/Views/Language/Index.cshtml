@@ -1,6 +1,8 @@
 ﻿@*@model MK_MVC.ViewModels.PeopleViewModel;
-using MK_MVC.Models*@
-@model IEnumerable<ShowLanguageViewModel>
+using MK_MVC.Models
+@model IEnumerable<ShowLanguageViewModel>*@
+@model IEnumerable<Language>
+
 @{
     string l = "";
     ViewData["Title"] = "Index";
@@ -15,24 +17,18 @@ using MK_MVC.Models*@
         <tr>
             <!--<th>City Id</th>-->
             <th>Language</th>
-            <th>People</th>
+            
         </tr>
     </thead>
     <tbody>
         @foreach (var item in Model)
         {
-            l = "";
+           
             <tr>
-                <td>@item.Language</td>
-                <td>
-                    @foreach (var pers in Model)
-                    {
-                        l = l + pers.Name + " | ";
-                    }
-                    @l
-                </td>
-                
-                <td>  </td>
+                <td>@item.LanguageName</td>
+
+
+                <td><a asp-action="ShowPeopleLanguages" asp-route-id="@item.LanguageId">People</a>  </td>
             </tr>
         }
     </tbody>

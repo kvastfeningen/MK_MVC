@@ -96,5 +96,21 @@ namespace MK_MVC.Controllers
             return RedirectToAction("Index");
         }
 
+        public IActionResult Details(int Id)
+        {
+            var personDetails = _context.People.Find(Id);
+           
+            var pd = _context.PersonLanguages?.Include(l => l.Language).Include(p => p.Person).Where(s => s.PersonId.Equals(Id)).ToList(); //  || s.City.Contains(SearchWord)
+
+            var viewModel = new ShowPersonViewModel()
+            {
+                AllLanguages = pd
+            };
+
+            return View(viewModel);
+
+           
+        }
+
     }
 }

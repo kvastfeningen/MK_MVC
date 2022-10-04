@@ -35,3 +35,75 @@ Diverse kod till LanguageController
                            
                         }).ToList();
            
+
+ <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>  </td>
+                <td>
+                    @foreach (var lang in Model.Where(n => n.Name == item.Name))
+                    {
+                        l = "";
+                        l = l + lang.Language + " | ";
+                    }
+                    @l
+                </td>
+
+               
+            </tr>
+        }
+    </tbody>
+
+
+/*
+            var vm = new ShowPersonViewModel();
+            vm.Languages = _context.Languages
+                .Include(pl => pl.PersonLanguages.Select(i => i.PersonId))
+                .Include(p => p.PersonLanguages);
+            
+            return View(vm); 
+            */
+            //var p = _context.People.Include(pl => pl.PersonLanguages).Where(s => s.PersonId.Contains(s.PersonId)).ToList();
+            /*
+            var viewModel = (from a in _context.PersonLanguages
+                             join b in _context.Languages on a.LanguageId equals b.LanguageId
+                             join c in _context.People on a.PersonId equals c.PersonId
+                             select new ShowPersonViewModel
+                             {
+                                 Name = c.Name,
+                                 Language = b.LanguageName,
+                                 
+
+                             }).ToList();
+            */
+            /*
+                         List < Language > listOfLanguages = _context.Languages
+                 .Include(pl => pl.PersonLanguages)
+                 .ToList();
+               */
+
+
+
+ <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                @foreach (var item in Model?.AllLanguages)
+                {
+
+                    <partial name="_Person2" model="item" />
+                }
+            </tr>
+            </tr>
+        }
+    </tbody>
+
+
+<td>
+                    @foreach (var pers in Model.Where(x => x.Language == item.Language))
+                    {
+                        l = l + pers.Name + " | ";
+                    }
+                    @l
+                </td>

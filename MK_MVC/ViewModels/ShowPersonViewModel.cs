@@ -12,9 +12,13 @@ namespace MK_MVC.ViewModels
 {
     public class ShowPersonViewModel
     {
-
-        public Person Person { get; set; }
+        
+        public int PersonId { get; set; }
+        public string Name { get; set; }
+      
         public Language Language { get; set; }
-        public PersonLanguage PersonLanguage { get; set; }
+       
+
+        public List<PersonLanguage> AllLanguages { get; set; }
     }
 }

@@ -11,6 +11,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Authorization;
 using System.Data;
 using System.Net;
+using MK_MVC.Migrations;
 
 namespace MK_MVC.Controllers
 {
@@ -26,23 +27,29 @@ namespace MK_MVC.Controllers
 
         public IActionResult Index()
         {
+            List<Language> listOfLanguages = _context.Languages.ToList();
+            return View(listOfLanguages);
+            //var p = _context.People.Include(pl => pl.PersonLanguages).Where(s => s.PersonId.Contains(s.PersonId)).ToList();
+            /*
+             var viewModel = (from a in _context.PersonLanguages
+                             join b in _context.Languages on a.LanguageId equals b.LanguageId
+                             join c in _context.People on a.PersonId equals c.PersonId
+                             select new ShowLanguageViewModel
+                             {
+                                 Language = b.LanguageName,
+                                 Name = c.Name,
 
-            var viewModel = (from a in _context.PersonLanguages
-                            join b in _context.Languages on a.LanguageId equals b.LanguageId
-                            join c in _context.People on a.PersonId equals c.PersonId
-                            select new ShowLanguageViewModel
-                            {
-                                Language = b.LanguageName,
-                                Name = c.Name,
+                             }).ToList();
+            */
 
-                            }).ToList();
             /*
                          List < Language > listOfLanguages = _context.Languages
                  .Include(pl => pl.PersonLanguages)
                  .ToList();
                */
 
-            return View(viewModel);
+
+            return View();
             
         }
 
@@ -63,6 +70,20 @@ namespace MK_MVC.Controllers
             }
             return View();
         }
+
+        public IActionResult ShowPeopleLanguages (int Id)
+        {
+            var personDetails = _context.People.Find(Id);
+
+            var apl = _context.PersonLanguages?.Include(p => p.Person).Include(l => l.Language).Where(s => s.LanguageId.Equals(Id)).ToList(); //  || s.City.Contains(SearchWord)
+
+            var viewModel = new ShowLanguageViewModel()
+            {
+                AllPeopleLanguages = apl
+            };
+            return View(viewModel);
+        }
+
         /*
         public IActionResult Details()
         {

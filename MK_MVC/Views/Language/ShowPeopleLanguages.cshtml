@@ -1,0 +1,37 @@
+﻿@model MK_MVC.ViewModels.ShowLanguageViewModel;
+@using MK_MVC.Models;
+@{
+    string l = "";
+    ViewData["Title"] = "Language Details";
+}
+
+
+
+<table class="table">
+    <thead>
+        <tr>
+
+            <th>Language</th>
+
+            <th>  </th>
+            <th>     </th>
+            <th>         </th>
+
+        </tr>
+    </thead>
+    <tbody>
+
+        <tr>
+            @foreach (var item in Model?.AllPeopleLanguages)
+            {
+
+                <partial name="_Language1" model="item" />
+            }
+        </tr>
+        </tr>
+
+    </tbody>
+
+</table>
+<br />
+<br />

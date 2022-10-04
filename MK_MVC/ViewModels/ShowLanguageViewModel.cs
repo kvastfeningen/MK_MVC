@@ -15,40 +15,23 @@ namespace MK_MVC.ViewModels
     public class ShowLanguageViewModel
     {
 
-
-        /*
-        public Person Person { get; set; }
-        public Language Language { get; set; }
-        public PersonLanguage PersonLanguage { get; set; }
-
-        [Display(Name = "Language")]
-        public string LanguageName { get; set; }
-
-        [Display(Name = "Person")]
-        public string Name { get; set; }
-        */
-        /*
-        public int PersonId { get; set; }
-        public string Name { get; set; }
-
-        public int LanguageId { get; set; }
-        public string LanguageName { get; set; }
-*/
-        public IEnumerable<Language> Languages { get; set; }
-        public IEnumerable<Person> People { get; set; }
-        public IEnumerable<PersonLanguage> PersonLanguages { get; set; }
+        //public IEnumerable<Language> Languages { get; set; }
+       // public IEnumerable<Person> People { get; set; }
+        //public IEnumerable<PersonLanguage> PersonLanguages { get; set; }
 
        
         public string Language { get; set; }
         public string Name { get; set; }
 
+        public int LanguagId { get; set; }
+        public string LanguageName { get; set; }
+
+        public Person Person { get; set; }
 
 
-       
-      
-        /*
-       public List<Language> AllLanguages{ get; set; }
-       */
+        public List<PersonLanguage> AllPeopleLanguages { get; set; }
+
+
     }
 }
 
