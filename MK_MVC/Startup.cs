@@ -12,6 +12,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using MK_MVC.Models;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.OpenApi.Models;
 
 namespace MK_MVC
 {
@@ -30,14 +31,32 @@ namespace MK_MVC
 		public void ConfigureServices(IServiceCollection services)
 		{
 			services.AddMvc();
-		
-			services.AddSession(options =>
+
+			services.AddCors(options =>
+			{
+				options.AddPolicy(name: "AllowReact",
+						policy =>
+						{
+							policy.WithOrigins("*");
+						});
+			});
+
+            // Register the Swagger generator, defining 1 or more Swagger documents
+            services.AddSwaggerGen(c =>
+            {
+                c.SwaggerDoc("v1", new OpenApiInfo { Title = "My API", Version = "v1" });
+            });
+            services.AddControllers();
+
+            services.AddSession(options =>
 			{
 				options.IdleTimeout = TimeSpan.FromMinutes(10);
 				options.Cookie.HttpOnly = true;
 				options.Cookie.IsEssential = true;
 			});
-			services.AddDbContext<ApplicationDbContext>(options =>
+
+            
+            services.AddDbContext<ApplicationDbContext>(options =>
 			options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
 
 			services.AddIdentity<ApplicationUser, IdentityRole>(options => options.SignIn.RequireConfirmedAccount = false)
@@ -49,16 +68,30 @@ namespace MK_MVC
 		// This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
 		public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
 		{
+
+
 			if (env.IsDevelopment())
 			{
 				app.UseDeveloperExceptionPage();
 			}
 
-			app.UseStaticFiles();
+			
+            // Enable middleware to serve generated Swagger as a JSON endpoint.
+            app.UseSwagger();
+            // Enable middleware to serve swagger-ui (HTML, JS, CSS, etc.),
+            // specifying the Swagger JSON endpoint.
+            app.UseSwaggerUI(c =>
+            {
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "My API V1");
+            });
+
+            app.UseStaticFiles();
 
 			app.UseRouting();
 
-			app.UseAuthentication();
+            app.UseCors("AllowReact");
+
+            app.UseAuthentication();
 			app.UseAuthorization();
 
 			app.UseSession();
