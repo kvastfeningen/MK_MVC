@@ -34,13 +34,19 @@ namespace MK_MVC
 
 			services.AddCors(options =>
 			{
-				options.AddPolicy(name: "AllowReact",
-						policy =>
+				//options.AddPolicy(name: "AllowReact",
+                options.AddDefaultPolicy(
+                        policy =>
 						{
-							policy.WithOrigins("*");
-						});
-			});
 
+							policy.WithOrigins("*")
+							.AllowAnyHeader()
+                            .AllowAnyMethod()
+                            ;
+							
+                        });
+			});
+            
             // Register the Swagger generator, defining 1 or more Swagger documents
             services.AddSwaggerGen(c =>
             {
@@ -85,18 +91,31 @@ namespace MK_MVC
                 c.SwaggerEndpoint("/swagger/v1/swagger.json", "My API V1");
             });
 
+            app.UseDefaultFiles();
             app.UseStaticFiles();
 
 			app.UseRouting();
 
-            app.UseCors("AllowReact");
-
+            //app.UseCors("AllowReact");
+            app.UseCors();
             app.UseAuthentication();
 			app.UseAuthorization();
 
 			app.UseSession();
 
-			app.UseEndpoints(endpoints =>
+
+			/*
+            // Add Access Control Allow Origin headers
+            app.use((req, res, next) => {
+                res.setHeader("Access-Control-Allow-Origin", "*");
+                res.header(
+                  "Access-Control-Allow-Headers",
+                  "Origin, X-Requested-With, Content-Type, Accept"
+                );
+                next();
+            });
+			*/
+            app.UseEndpoints(endpoints =>
 
 			{
 

@@ -67,7 +67,7 @@ namespace MK_MVC.Controllers
         [HttpPost]
         public IActionResult Add(CreatePersonViewModel createPersonViewModel)
         {
-            ModelState.Remove("CityId");
+            //ModelState.Remove("CityId");
             if (ModelState.IsValid)
             {
                 Person newPerson = new Person

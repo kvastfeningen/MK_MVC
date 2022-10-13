@@ -1,0 +1,42 @@
+import React, { Component } from 'react';
+
+class AllPeople extends Component {
+
+    constructor(props) {
+        super(props);
+        this.state = {
+          people: [],
+          
+        };
+      }
+
+      componentDidMount() {
+        fetch("https://localhost:44308/api/people")
+        /*.then(res.header("Access-Control-Allow-Origin", "*"))*/
+        .then(res => res.json())
+        .then(
+        (result) => {
+            this.setState({
+              people:result
+            });
+        },
+        (error) => {
+            alert(error);
+        }
+        )
+    }
+
+    /*
+    {this.state.people.map(p => (
+        <tr key={p.personId}>
+          <td></td>
+          <td>{p.name}</td>
+          
+          <td><button type="reset" onClick={this.detailsPerson}>Details</button> &nbsp;&nbsp; </td>
+          
+         
+          </tr>
+            ))}       
+            */
+            
+}

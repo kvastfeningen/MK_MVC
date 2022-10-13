@@ -1,13 +1,56 @@
 import React, { Component } from 'react';
-import DeletePerson from './';
-/*import Table from './Table';
-import Form from './Form';*/
+import ReactDOM from 'react-dom';
 import axios from 'axios';
-
+import { Link } from 'react-router-dom'; 
+import './App.css';  
+/*
+import CreatePerson from './components/CreatePerson';
+*/
 /*
 https://localhost:44308/api/people
 react: http://localhost:3000/
 */
+
+// function deletePerson (personId)
+// {
+//   fetch('https://localhost:44308/api/delete/${id}',{
+//     method:'DELETE'
+//   }).then((result)=>{
+//     result.json().then((res)=>{
+//       console.warn(res)
+//     })
+//   })
+// }
+/*
+function DeletePerson () {  
+  axios.delete(`http://localhost:44308/Api/Delete?id=${this.props.obj.Id}`)  
+ .then(json => {  
+ if(json.data.Status==='Delete'){  
+ alert('Record deleted successfully!!');  
+ }  
+ })  
+ }  
+
+ <td><button type="button" onClick={this.DeletePerson} className="btn btn-danger">Delete</button></td>
+  */           
+
+function deletePerson(id){
+  console.log("bööös")
+  axios.delete(`https://localhost:44308/api/react/delete/${id}`)
+  .then(json => {  
+    if(json.data.Status==='Delete'){  
+    alert('Record deleted successfully!!');  
+    }  
+    })  
+  /*.then(response =>{
+      if(response.status === 204){
+          console.log("removed")
+      }
+      
+  })*/
+ // get()
+}
+
 
 class App extends Component {
 
@@ -27,7 +70,7 @@ class App extends Component {
 
     componentDidMount() {
         fetch("https://localhost:44308/api/people")
-        /*.then(res.header("Access-Control-Allow-Origin", "*"))*/
+        
         .then(res => res.json())
         .then(
         (result) => {
@@ -42,18 +85,19 @@ class App extends Component {
     }
 
 
-    
-
+   
     render() {
         return (
-            <div>
+         
+            <div className="container">
+               
               <h2>People</h2>
               <table>
                 <thead>
                   <tr>
                   <th>   </th>
                     <th>Name</th>
-                    
+                    <th>PersonId</th>
                     
                   </tr>
                 </thead>
@@ -63,10 +107,9 @@ class App extends Component {
             <tr key={p.personId}>
               <td></td>
               <td>{p.name}</td>
+              <td>{p.personId}</td>
+              <td><button onClick={()=>deletePerson(p.personId)}>Delete</button> &nbsp;&nbsp; </td>
               
-              <td><button type="reset" onClick={this.detailsPerson}>Details</button> &nbsp;&nbsp; </td>
-              <DeletePerson />
-             
               </tr>
                 ))}        
                 </tbody>

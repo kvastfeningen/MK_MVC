@@ -4,8 +4,10 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using MK_MVC.Data;
 using MK_MVC.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Web.Http;
 using HttpDeleteAttribute = System.Web.Http.HttpDeleteAttribute;
 using HttpGetAttribute = Microsoft.AspNetCore.Mvc.HttpGetAttribute;
@@ -14,6 +16,7 @@ using RouteAttribute = Microsoft.AspNetCore.Mvc.RouteAttribute;
 
 namespace MK_MVC.Controllers
 {
+    //[EnableCors(origins: "*", headers: "*", methods: "*")]
     //[Route("api/[ReactController]")]
     [ApiController]
     public class ReactController : ControllerBase
@@ -33,48 +36,101 @@ namespace MK_MVC.Controllers
         {
             List<Person> listOfPeople = _context.People.ToList();
 
-
-
             return (listOfPeople);
         }
 
-
-        [HttpGet]
+        
+        [HttpPost]
         [Route("api/create")]
-        public IEnumerable<Person> CreatePerson(int id)
+        public IActionResult CreatePerson(Person p)
         {
-            List<Person> PersonDetails = _context.People.Include(pl => pl.PersonLanguages).Include(p => p.City).Where(s => s.PersonId.Equals(id)).ToList();
-            //var p = _context.People?.Where(s => s.PersonId.Equals(id)).ToList(); //  || s.City.Contains(SearchWord)
+            Person person = new Person();
+            person.PersonId = p.PersonId;
+            person.Name = p.Name;
+            person.Phone = p.Phone;
+            person.City = p.City;
 
+            _context.People.Add(person);
+            _context.SaveChanges();
 
-
-            return (PersonDetails);
+            return Ok();
         }
-
-
+        
+/*
         [HttpGet]
         [Route("api/details")]
         public IEnumerable<Person> GetPerson(int id)
         {
            // List<Person> PersonDetails = _context.People.Include(pl => pl.PersonLanguages).Include(p => p.City).Where(s => s.PersonId.Equals(id)).ToList();
-            var p = _context.People?.Include(pl => pl.PersonLanguages).Include(p => p.City).Where(p => p.PersonId == id).ToList(); //  || s.City.Contains(SearchWord)
+           
+            var p = _context.People?.Include(pl => pl.PersonLanguages).Include(p => p.City).Where(p => p.PersonId == id).ToList().FirstOrDefault();  //  || s.City.Contains(SearchWord)
+
+           
+            Person person = new Person();
+            person.PersonId = p.PersonId;
+            person.Name = p.Name;
+            person.Phone = p.Phone;
+            person.City = p.City;
            
 
-
-            return (p);
+            return ();
         }
-
-        [HttpPost]
+    */
         [Route("api/delete")]
-        public IActionResult Remove(int Id)
+        [HttpDelete]
+        //[ProducesResponseType(200)]
+        public async Task<IActionResult> Delete(int id)
+        //public Object Delete(int id)
         {
-            // PeopleViewModel.Remove(Id);
-            var personToRemove = _context.People.Find(Id);
-            _context.People.Remove(personToRemove);
-            _context.SaveChanges();
+            //var personToRemove = await _context.People.FindAsync(id);
+            
+            //var personToRemove = _context.People.Find(id);
+            var personToRemove = _context.People.Where(x => x.PersonId == id).ToList().FirstOrDefault();
 
-            return Ok();
+            if (personToRemove == null)
+            {
+                return NotFound();
+            }
+
+            _context.People.Remove(personToRemove);
+            //_context.SaveChanges();
+            await _context.SaveChangesAsync();
+
+            return NoContent();
+            //return Ok();
         }
     
+
+        /*
+        
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> DeletePerson(long id)
+        {
+            var personToRemove = await _context.People.FindAsync(id);
+
+            if (personToRemove == null)
+            {
+                return NotFound();
+            }
+
+            _context.People.Remove(personToRemove);
+            await _context.SaveChangesAsync();
+
+            return NoContent();
+        }
+
+        private bool PersonItemExists(long id)
+        {
+            return _context.People.Any(e => e.PersonId == id);
+        }
+
+        private static PersonDTO PersonToDTO(Person personToRemove) =>
+            new TodoItemDTO
+            {
+                Id = personToRemove.PersonId,
+                Name = personToRemove.Name,
+                IsComplete = personToRemove.IsComplete
+            };
+        */
     }
 }
