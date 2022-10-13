@@ -56,27 +56,34 @@ namespace MK_MVC.Controllers
             return Ok();
         }
         
-/*
+
         [HttpGet]
         [Route("api/details")]
-        public IEnumerable<Person> GetPerson(int id)
+        public object Details(int id)
         {
-           // List<Person> PersonDetails = _context.People.Include(pl => pl.PersonLanguages).Include(p => p.City).Where(s => s.PersonId.Equals(id)).ToList();
-           
-            var p = _context.People?.Include(pl => pl.PersonLanguages).Include(p => p.City).Where(p => p.PersonId == id).ToList().FirstOrDefault();  //  || s.City.Contains(SearchWord)
+            // List<Person> PersonDetails = _context.People.Include(pl => pl.PersonLanguages).Include(p => p.City).Where(s => s.PersonId.Equals(id)).ToList();
 
-           
-            Person person = new Person();
+            //var p = _context.People?.Include(pl => pl.PersonLanguages).Include(p => p.City).Where(p => p.PersonId == id).ToList().FirstOrDefault();  //  || s.City.Contains(SearchWord)
+            var p = _context.People?.Include(p => p.City).Where(p => p.PersonId == id).ToList().FirstOrDefault();  //  || s.City.Contains(SearchWord)
+            /*
+            if (p.PersonId > 0)
+            {
+
+                p.Name = Person.Name;
+                p.Phone = st.Rollno;
+                p.City = st.Address;
+
+                Person person = new Person();
             person.PersonId = p.PersonId;
             person.Name = p.Name;
             person.Phone = p.Phone;
             person.City = p.City;
-           
+           */
 
-            return ();
+            return (p);
         }
-    */
-        [Route("api/delete")]
+    
+        [Route("api/delete/{id}")]
         [HttpDelete]
         //[ProducesResponseType(200)]
         public async Task<IActionResult> Delete(int id)

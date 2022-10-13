@@ -36,12 +36,14 @@ function DeletePerson () {
 
 function deletePerson(id){
   console.log("bööös")
-  axios.delete(`https://localhost:44308/api/react/delete/${id}`)
+  
+  axios.delete(`https://localhost:44308/api/delete/${id}`)
   .then(json => {  
     if(json.data.Status==='Delete'){  
     alert('Record deleted successfully!!');  
     }  
     })  
+
   /*.then(response =>{
       if(response.status === 204){
           console.log("removed")
@@ -49,7 +51,7 @@ function deletePerson(id){
       
   })*/
  // get()
-}
+  }
 
 
 class App extends Component {
