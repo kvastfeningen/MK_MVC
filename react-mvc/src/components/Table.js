@@ -1,6 +1,8 @@
 import React, { Component } from 'react';  
 import axios from 'axios';  
 import { Link } from 'react-router-dom';  
+import { Container, Col, Form, Row, FormGroup, Label, Input, Button } from 'reactstrap';  
+
 class Table extends Component {  
   constructor(props) {  
     super(props);  

@@ -1,124 +1,109 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
-import axios from 'axios';
-import { Link } from 'react-router-dom'; 
+import axios from 'axios'; 
 import './App.css';  
+import { Container, Col, Form, Row, FormGroup, Label, Input, Button } from 'reactstrap';  
+
+import { BrowserRouter as Router, Switch, Route, Link, Routes } from 'react-router-dom'; 
+//import {  BrowserRouter as Router,  Routes,  Route, Link} from "react-router-dom";
+//import {Router, Link, Route, Switch} from 'react-router-dom';
+//import {BrowserRouter as Router, Link, Switch} from "react-router-dom"
+//import { Route, Routes} from "react-router";
 /*
-import CreatePerson from './components/CreatePerson';
+import {
+  BrowserRouter,
+  Routes,
+  Route, 
+  Link
+} from "react-router-dom";
 */
-/*
-https://localhost:44308/api/people
-react: http://localhost:3000/
-*/
+import PList from './components/PList';
 
-// function deletePerson (personId)
-// {
-//   fetch('https://localhost:44308/api/delete/${id}',{
-//     method:'DELETE'
-//   }).then((result)=>{
-//     result.json().then((res)=>{
-//       console.warn(res)
-//     })
-//   })
-// }
-/*
-function DeletePerson () {  
-  axios.delete(`http://localhost:44308/Api/Delete?id=${this.props.obj.Id}`)  
- .then(json => {  
- if(json.data.Status==='Delete'){  
- alert('Record deleted successfully!!');  
- }  
- })  
- }  
+import PeopleList from './components/PeopleList';
+import Details from './components/Details';
+import CreatePerson from './components/CreatePerson';      
 
- <td><button type="button" onClick={this.DeletePerson} className="btn btn-danger">Delete</button></td>
-  */           
-
-function deletePerson(id){
-  console.log("bööös")
+function App() {
   
-  axios.delete(`https://localhost:44308/api/delete/${id}`)
-  .then(json => {  
-    if(json.data.Status==='Delete'){  
-    alert('Record deleted successfully!!');  
-    }  
-    })  
-
-  /*.then(response =>{
-      if(response.status === 204){
-          console.log("removed")
-      }
+    return (
       
-  })*/
- // get()
-  }
+<Router>
 
-
-class App extends Component {
-
-    constructor(props) {
-        super(props);
-        this.state = {
-          people: [],
-          
-        };
-      }
+<div className="container"> 
+<nav className="navbar navbar-expand-lg navheader">  
+          <div className="collapse navbar-collapse" >  
+            <ul className="navbar-nav mr-auto">  
+              <li className="nav-item">  
+                <Link to={'/PList'} className="nav-link">PList</Link>  
+              </li>  
+              <li className="nav-item">  
+                <Link to={'/Details'} className="nav-link">Details</Link>  
+              </li>  
+              <li className="nav-item">  
+                <Link to={'/CreatePerson'} className="nav-link">CreatePerson</Link>  
+              </li> 
+            </ul>  
+          </div>  
+        </nav> <br /> 
+      <Switch>
+      <Route exact path='/PList' component={PList} />
       
-/*
-    state = {
-        people: []
-    };
-*/
+      <Route path='/Details' component={Details} />
+      <Route path='/CreatePerson' component={CreatePerson} />
+     </Switch>
 
-    componentDidMount() {
-        fetch("https://localhost:44308/api/people")
-        
-        .then(res => res.json())
-        .then(
-        (result) => {
-            this.setState({
-              people:result
-            });
-        },
-        (error) => {
-            alert(error);
-        }
-        )
-    }
+      </div> 
+   </Router>
 
-
-   
-    render() {
-        return (
-         
-            <div className="container">
-               
-              <h2>People</h2>
-              <table>
-                <thead>
-                  <tr>
-                  <th>   </th>
-                    <th>Name</th>
-                    <th>PersonId</th>
-                    
-                  </tr>
-                </thead>
-                <tbody> 
-
-                {this.state.people.map(p => (
-            <tr key={p.personId}>
-              <td></td>
-              <td>{p.name}</td>
-              <td>{p.personId}</td>
-              <td><button onClick={()=>deletePerson(p.personId)}>Delete</button> &nbsp;&nbsp; </td>
-              
-              </tr>
-                ))}        
-                </tbody>
-                
-              </table>
-            </div>
-            );
-    }
+    );
+  
 }
 export default App;
+
+{/*
+
+<Route exact path='/CreatePerson' component={CreatePerson} />  
+              
+              <Route path='/details/:id' component={Details} />  
+              <Route path='/PeopleList' component={PeopleList} />  
+
+<div className="container">  
+            <nav className="navbar navbar-expand-lg navheader">  
+              <div className="collapse navbar-collapse" >  
+                <ul className="navbar-nav mr-auto">  
+                  <li className="nav-item">  
+                    <Link to={'/CreatePerson'} className="nav-link">New Person</Link>  
+                  </li>  
+                  <li className="nav-item">  
+                    <Link to={'/PList'} className="nav-link">People</Link>  
+                  </li>  
+                </ul>  
+              </div>  
+            </nav> <br />  
+
+            </div>
+
+
+            funkar
+            bara //<PList /> i return (utan router)
+            eller tex //<Details />
+            
+
+class App extends Component {
+  render() {
+    return (
+<Router>
+      <Switch>
+      <Route path='/PList' component={PList} /> 
+      
+      
+      </Switch>
+      </Router>
+
+    );
+  }
+}
+export default App;
+
+
+              */}

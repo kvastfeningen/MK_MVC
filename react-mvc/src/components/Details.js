@@ -1,12 +1,22 @@
 import React, { Component } from 'react';   
 import { Container, Col, Form, Row, FormGroup, Label, Input, Button } from 'reactstrap';  
 import axios from 'axios' 
-import './App.css';  
-
+//import './App.css';  
+/*
+function DeletePerson(id){
+  axios.delete(`https://localhost:44308/api/delete/${id}+this.props.match.params.id')
+  .then(json => {  
+    if(json.data.Status==='Delete'){  
+    alert('Record deleted successfully!!');  
+    }  
+    });
+   }
+*/
 class Details extends React.Component{  
     constructor(props){  
     super(props)  
 
+   
     this.onChangeName = this.onChangeName.bind(this);  
     this.onChangePhone = this.onChangePhone.bind(this);  
     this.onChangeCity = this.onChangeCity.bind(this);  
@@ -24,15 +34,15 @@ class Details extends React.Component{
     }
 
     componentDidMount() {  
-        axios.get('http://localhost:44308/Api/details?id='+this.props.match.params.id)  
+        axios.get('http://localhost:44308/api/details/${id}'+this.props.match.params.id)  
             .then(response => {  
                 this.setState({ 
                   //PersonId: response.data.PersonId,
                   Name: response.data.Name,   
                   Phone: response.data.Phone,  
-                  City: response.data.City,
-                  Phone: response.data.Country,
-                  Phone: response.data.Language});  
+                  City: response.data.City.CityName,
+                  Country: response.data.Country.CountryName,
+                  Language: response.data.Language});  
     
             })  
             .catch(function (error) {  
@@ -72,28 +82,41 @@ class Details extends React.Component{
           Language: this.state.Language  
       
         };  
-        axios.post('http://localhost:44308/api/details', obj)  
+      
+        axios.post('http://localhost:44308/api/details/${id}', obj)  
         .then(res => console.log(res.data));  
         debugger;  
         this.props.history.push('/Peoplelist')  
 
-        function deletePerson(id){
-        axios.delete(`https://localhost:44308/api/react/delete/${id}`)
-  .then(json => {  
-    if(json.data.Status==='Delete'){  
-    alert('Record deleted successfully!!');  
-    }  
-    })  
 
-  }  
+        
+       
+ 
+      }
+      
+      componentDidMount() {
+        fetch("https://localhost:44308/api/people")
+        
+        .then(res => res.json())
+        .then(
+        (result) => {
+            this.setState({
+              people:result
+            });
+        },
+        (error) => {
+            alert(error);
+        }
+        )
+    }
 
-
+    
       render() {  
         return ( 
 
 <Container className="App">  
   
-  <h4 className="PageHeading">Update Student Informations</h4>  
+  <h4 className="PageHeading">Update Person</h4>  
      <Form className="form" onSubmit={this.onSubmit}>  
          <Col>  
              <FormGroup row>  
@@ -118,13 +141,13 @@ class Details extends React.Component{
               <FormGroup row>  
                  <Label for="Password" sm={2}>Country</Label>  
                  <Col sm={10}>  
-                     <Input type="text" name="Country"value={this.state.Country} onChange={this.onChangeCountry} placeholder="Enter Country" />  
+                     <Input type="text" name="Country"value={this.state.Country} placeholder="Enter Country" />  
                  </Col>  
              </FormGroup> 
              <FormGroup row>  
                  <Label for="Password" sm={2}>Language</Label>  
                  <Col sm={10}>  
-                     <Input type="text" name="Language"value={this.state.Language} onChange={this.onChangeLanguage} placeholder="Enter Language" />  
+                     <Input type="text" name="Language"value={this.state.Language}  placeholder="Enter Language" />  
                  </Col>  
              </FormGroup>  
          </Col>  
@@ -138,8 +161,9 @@ class Details extends React.Component{
                  <Col sm={1}>  
                      <Button color="danger">Cancel</Button>{' '}  
                  </Col>  
-                 <Col sm={5}>  
-                 <Button onClick={()=>deletePerson(id)}>Delete</Button>
+                 <Col sm={1}> 
+              {/*    <Button type="button" onClick={DeletePerson(Id)} className="btn btn-danger">Delete</Button>   */}
+                 
                  </Col>  
              </FormGroup>  
          </Col>  
@@ -150,7 +174,7 @@ class Details extends React.Component{
     }  
   
 }  
-}
+
 export default Details; 
 /*
 
@@ -171,7 +195,7 @@ export default Details;
           </td>  
           
           <td>  
-            <button type="button" onClick={this.DeletePerson} className="btn btn-danger">Delete</button>  
+            <button type="button" onClick={deletePerson(Id)} className="btn btn-danger">Delete</button>  
           </td>  
         </tr>  
 */

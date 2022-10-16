@@ -1,8 +1,9 @@
 import React, { Component } from 'react';  
 import { Container, Col, Form, Row, FormGroup, Label, Input, Button } from 'reactstrap';  
 import axios from 'axios' 
-import './App.css';  
- 
+//import './App.css'; 
+import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom'; 
+
 
 export default class PeopleList extends Component {
 
@@ -36,7 +37,7 @@ export default class PeopleList extends Component {
         });  
       }  
 */
-      render() {
+      render() { 
         return (
          
             <div>
@@ -59,7 +60,7 @@ export default class PeopleList extends Component {
               <td>{p.name}</td>
               <td>{p.personId}</td>
               <td>  
-          <Link to={"/details/"+this.props.obj.Id} className="btn btn-success">Details</Link>  
+          <Link to={"/Details/"+this.props.obj.Id} className="btn btn-success">Details</Link>  
           </td>
               </tr>
                 ))}        
@@ -68,6 +69,7 @@ export default class PeopleList extends Component {
               </table>
             </div>
             );
-    }
+    }  
 
 }
+//export default PeopleList; 
