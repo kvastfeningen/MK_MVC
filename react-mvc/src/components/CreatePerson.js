@@ -1,31 +1,39 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import { Container, Col, Form, Row, FormGroup, Label, Input, Button } from 'reactstrap';
+
 //import './App.css';  
 
 class CreatePerson extends React.Component{  
     constructor(props){  
     super(props)  
-    this.state = {  
+/*
+    this.onChangeName = this.onChangeName.bind(this);  
+    this.onChangePhone = this.onChangePhone.bind(this);  
+    this.onChangeCity = this.onChangeCity.bind(this);  
+    this.onSubmit = this.onSubmit.bind(this);  
+*/
+    this.state = { 
+    //PersonId:'', 
     Name:'',  
     Phone:'',  
     City:''  
     }  
     }
     CreatePerson=()=>{  
-        axios.post('https://localhost:44308/api/react/create', {Name:this.state.Name,Phone:this.state.Phone,  
+        axios.post('https://localhost:44308/api/react/create/', {Name:this.state.Name,Phone:this.state.Phone,  
         City:this.state.City})  
       .then(json => {  
       if(json.data.Status==='Success'){  
         console.log(json.data.Status);  
         alert("Data Save Successfully");  
       
-        //this.props.history.push('/People')  
+        this.props.history.push('/PList')  
       }  
       else{  
       alert('Data not Saved');  
       debugger;  
-      //this.props.history.push('/People')  
+      this.props.history.push('/PList')  
       }  
       })  
       }  

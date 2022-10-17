@@ -21,14 +21,9 @@ class Table extends Component {
           <td>  
             {this.props.obj.City}  
           </td>  
+          
           <td>  
-            {this.props.obj.Country}  
-          </td>
-          <td>  
-            {this.props.obj.Language}  
-          </td>  
-          <td>  
-          <Link to={"/edit/"+this.props.obj.Id} className="btn btn-success">Edit</Link>  
+          <Link to={"/PDetails/"+this.props.obj.Id} className="btn btn-success">Edit</Link>  
           </td>  
            
         </tr>  
@@ -37,3 +32,12 @@ class Table extends Component {
 }  
   
 export default Table; 
+
+/*
+<td>  
+            {this.props.obj.Country}  
+          </td>
+          <td>  
+            {this.props.obj.Language}  
+          </td>  
+          */

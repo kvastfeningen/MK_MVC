@@ -37,7 +37,7 @@ class Details extends React.Component{
         axios.get('http://localhost:44308/api/details/${id}'+this.props.match.params.id)  
             .then(response => {  
                 this.setState({ 
-                  //PersonId: response.data.PersonId,
+                  PersonId: response.data.PersonId,
                   Name: response.data.Name,   
                   Phone: response.data.Phone,  
                   City: response.data.City.CityName,
@@ -198,4 +198,7 @@ export default Details;
             <button type="button" onClick={deletePerson(Id)} className="btn btn-danger">Delete</button>  
           </td>  
         </tr>  
+*/
+/*
+
 */

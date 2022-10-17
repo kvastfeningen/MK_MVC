@@ -20,7 +20,7 @@ import {
 import PList from './components/PList';
 
 import PeopleList from './components/PeopleList';
-import Details from './components/Details';
+import PDetails from './components/PDetails';
 import CreatePerson from './components/CreatePerson';      
 
 function App() {
@@ -36,9 +36,7 @@ function App() {
               <li className="nav-item">  
                 <Link to={'/PList'} className="nav-link">PList</Link>  
               </li>  
-              <li className="nav-item">  
-                <Link to={'/Details'} className="nav-link">Details</Link>  
-              </li>  
+               
               <li className="nav-item">  
                 <Link to={'/CreatePerson'} className="nav-link">CreatePerson</Link>  
               </li> 
@@ -48,7 +46,7 @@ function App() {
       <Switch>
       <Route exact path='/PList' component={PList} />
       
-      <Route path='/Details' component={Details} />
+      <Route path='/PDetails:id' component={PDetails} />
       <Route path='/CreatePerson' component={CreatePerson} />
      </Switch>
 
@@ -60,7 +58,7 @@ function App() {
 }
 export default App;
 
-{/*
+/*
 
 <Route exact path='/CreatePerson' component={CreatePerson} />  
               
@@ -106,4 +104,4 @@ class App extends Component {
 export default App;
 
 
-              */}
+              */

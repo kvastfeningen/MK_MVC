@@ -4,8 +4,7 @@ import axios from 'axios'
 //import './App.css'; 
 import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom'; 
 
-
-export default class PeopleList extends Component {
+class PeopleList extends Component {
 
     constructor(props) {
         super(props);
