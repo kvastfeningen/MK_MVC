@@ -53,7 +53,7 @@ function deletePerson(id){
                   <th>   </th>
                     <th>Name</th>
                     <th>PersonId</th>
-                    
+                    <th>CityId</th>
                   </tr>
                 </thead>
                 <tbody> 
@@ -63,9 +63,10 @@ function deletePerson(id){
               <td></td>
               <td>{p.name}</td>
               <td>{p.personId}</td>
+              <td>{p.cityId}</td>
               <td><Link to={"/PDetails/"+p.personId} className="btn btn-success">Details</Link></td>
               <td><button onClick={()=>deletePerson(p.personId)}>Delete</button> &nbsp;&nbsp; </td>
-              
+             
               </tr>
                 ))}        
                 </tbody>

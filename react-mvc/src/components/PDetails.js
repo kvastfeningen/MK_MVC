@@ -4,7 +4,7 @@ import axios from 'axios'
 
 function deletePerson(id){
   
-    axios.delete(`https://localhost:44308/api/delete/${id}`)
+    axios.delete("https://localhost:44308/api/delete/${id}")
     .then(json => {  
       if(json.data.Status==='Delete'){  
       alert('Record deleted successfully!!');  
@@ -15,27 +15,27 @@ function deletePerson(id){
 class PDetails extends Component {
     constructor(props){  
         super(props)  
-/*
+
         this.state = {  
-            PersonId:'',
+            
             Name:'', 
             Phone:'',  
-           // City:'' 
+            CityId:'' 
             } 
-  */          
+
             }
 
            
             componentDidMount() {  
-               
-       axios.get(`https://localhost:44308/api/details/${id}`) 
-            //axios.get(`http://localhost:44308/api/details?id`+this.props.match.params.id)
+              
+      axios.post("https://localhost:44308/api/details/${id}") 
+            //axios.get("https://localhost:44308/api/details?id="+this.props.match.params.id)
                     .then(response => {  
                         this.setState({ 
                           PersonId: response.data.PersonId,
                           Name: response.data.Name,   
                           Phone: response.data.Phone,  
-                          //City: response.data.City.CityName
+                          CityId: response.data.CityId
                          });  
             
                     })  
@@ -69,6 +69,7 @@ class PDetails extends Component {
                    <td>{this.props.PersonId}</td>
                    <td>{this.props.Name}</td>
                    <td>{this.props.Phone}</td>
+                   <td>{this.props.CityId}</td>
                   {/*  <td>{this.state.City.CityName}</td>*/}
                  
                    <td><button onClick={()=>deletePerson(this.state.PersonId)}>Delete</button> &nbsp;&nbsp; </td>

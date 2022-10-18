@@ -36,7 +36,7 @@ function App() {
               <li className="nav-item">  
                 <Link to={'/PList'} className="nav-link">PList</Link>  
               </li>  
-               
+              
               <li className="nav-item">  
                 <Link to={'/CreatePerson'} className="nav-link">CreatePerson</Link>  
               </li> 
@@ -46,7 +46,7 @@ function App() {
       <Switch>
       <Route exact path='/PList' component={PList} />
       
-      <Route path='/PDetails:id' component={PDetails} />
+      
       <Route path='/CreatePerson' component={CreatePerson} />
      </Switch>
 

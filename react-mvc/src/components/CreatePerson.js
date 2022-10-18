@@ -14,34 +14,41 @@ class CreatePerson extends React.Component{
     this.onSubmit = this.onSubmit.bind(this);  
 */
     this.state = { 
-    //PersonId:'', 
     Name:'',  
     Phone:'',  
-    City:''  
+   CityId:''  
     }  
     }
     CreatePerson=()=>{  
-        axios.post('https://localhost:44308/api/react/create/', {Name:this.state.Name,Phone:this.state.Phone,  
-        City:this.state.City})  
-      .then(json => {  
+        axios.post("https://localhost:44308/api/create", {Name:this.state.Name,Phone:this.state.Phone,CityId:this.state.CityId}) 
+     /* .then(json => {  
       if(json.data.Status==='Success'){  
         console.log(json.data.Status);  
         alert("Data Save Successfully");  
       
-        this.props.history.push('/PList')  
+        //this.props.history.push('/PList')  
       }  
       else{  
       alert('Data not Saved');  
       debugger;  
-      this.props.history.push('/PList')  
+      //this.props.history.push('/PList')  
       }  
-      })  
+      })  */
+      .then(res => {
+        console.log(res);
+        console.log(res.data);
+      })
+
       }  
 
       handleChange= (e)=> {  
         this.setState({[e.target.name]:e.target.value});  
         } 
-
+/*
+        handleChange = event => {
+          this.setState({ name: event.target.value });
+        }
+*/
         render() {  
         return (  
           <Container className="App">  
@@ -64,7 +71,7 @@ class CreatePerson extends React.Component{
         <FormGroup Row>  
           <Label for="Password" sm={2}>City</Label>  
           <Col sm={10}>  
-            <Input type="text" name="City" onChange={this.handleChange} value={this.state.City} placeholder="Enter City" />
+            <Input type="text" name="CityId" onChange={this.handleChange} value={this.state.CityId} placeholder="Enter City" />
             </Col>  
         </FormGroup>
         <Col>  

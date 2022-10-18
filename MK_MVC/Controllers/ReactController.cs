@@ -52,10 +52,10 @@ namespace MK_MVC.Controllers
             //var p = _context.People?.Where(p => p.PersonId == id).ToList().FirstOrDefault();  //  || s.City.Contains(SearchWord)
 
             var p = _context.People?.Include(p => p.City).Where(p => p.PersonId == id).ToList().FirstOrDefault();  //  || s.City.Contains(SearchWord)
-            /*
+            /*-
             if (p.PersonId > 0)
             {
-
+            */
 
                 Person person = new Person();
                 person.PersonId = p.PersonId;
@@ -63,33 +63,34 @@ namespace MK_MVC.Controllers
                 person.Phone = p.Phone;
                 person.City = p.City;
 
-                return Ok();
-                //return (person);
-            }
-            */
-            return p;
+                //return Ok();
+                return person;
+           /* }
+            
+            return p;*/
 
         }
 
-        [HttpPost]
         [Route("api/create")]
-        public IActionResult CreatePerson(Person p)
+        [HttpPost]
+        public async Task<IActionResult> CreatePerson(Person p)
+        //public object CreatePerson(Person p)
         {
             Person person = new Person();
-           // person.PersonId = p.PersonId;
+            
             person.Name = p.Name;
             person.Phone = p.Phone;
-            person.City = p.City;
-
+            person.CityId = p.City.CityId;
+            //person.City = p.City;
             _context.People.Add(person);
-            _context.SaveChanges();
+            await _context.SaveChangesAsync();
 
             return Ok();
         }
 
 
 
-            [Route("api/delete/{id}")]
+        [Route("api/delete/{id}")]
         [HttpDelete]
         public async Task<IActionResult> Delete(int id)
         {
