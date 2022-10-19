@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import * as ReactDOMClient from 'react-dom/client';
+//import * as ReactDOMClient from 'react-dom/client';
 
 //import { BrowserRouter } from "react-router-dom";
 // Bootstrap CSS
@@ -15,8 +15,8 @@ import reportWebVitals from './reportWebVitals';
 //ReactDOMClient.createRoot(/*...*/);
 
 
-const root = ReactDOMClient.createRoot(document.getElementById('root'));
-//const root = ReactDOM.createRoot(document.getElementById('root'));
+//const root = ReactDOMClient.createRoot(document.getElementById('root'));
+const root = ReactDOM.createRoot(document.getElementById('root'));
 
 ReactDOM.render((
   <BrowserRouter>

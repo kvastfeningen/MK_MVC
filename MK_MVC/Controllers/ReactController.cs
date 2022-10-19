@@ -38,8 +38,17 @@ namespace MK_MVC.Controllers
             return (listOfPeople);
         }
 
+        [HttpGet]
+        [Route("api/cities")]
+        public IEnumerable<City> GetAllCities()
+        {
+           // List<City> listOfCities = _context.Cities.Include(p => p.Country).Where(c => c.CityId == id).ToList();
+            List<City> listOfCities = _context.Cities.ToList();
 
-        
+
+            return (listOfCities);
+        }
+
         [Route("api/details/{id}")]
         [HttpGet]
         public object Details(int id)
@@ -49,14 +58,14 @@ namespace MK_MVC.Controllers
             // List<Person> PersonDetails = _context.People.Include(pl => pl.PersonLanguages).Include(p => p.City).Where(s => s.PersonId.Equals(id)).ToList();
 
             //var p = _context.People?.Include(pl => pl.PersonLanguages).Include(p => p.City).Where(p => p.PersonId == id).ToList().FirstOrDefault();  //  || s.City.Contains(SearchWord)
-            //var p = _context.People?.Where(p => p.PersonId == id).ToList().FirstOrDefault();  //  || s.City.Contains(SearchWord)
+            //var p = _context.People?.Where(p => p.PersonId == id).ToList().FirstOrDefault();  
 
-            var p = _context.People?.Include(p => p.City).Where(p => p.PersonId == id).ToList().FirstOrDefault();  //  || s.City.Contains(SearchWord)
-            /*-
+            var p = _context.People?.Where(p => p.PersonId == id).ToList().FirstOrDefault();  
+            /*
             if (p.PersonId > 0)
             {
             */
-
+            /*
                 Person person = new Person();
                 person.PersonId = p.PersonId;
                 person.Name = p.Name;
@@ -65,9 +74,11 @@ namespace MK_MVC.Controllers
 
                 //return Ok();
                 return person;
-           /* }
-            
-            return p;*/
+            }
+
+            Include(p => p.City).
+            */
+            return p;
 
         }
 

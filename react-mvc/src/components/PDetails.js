@@ -20,7 +20,7 @@ class PDetails extends Component {
             
             Name:'', 
             Phone:'',  
-            CityId:'' 
+            //CityId:'' 
             } 
 
             }
@@ -28,14 +28,14 @@ class PDetails extends Component {
            
             componentDidMount() {  
               
-      axios.post("https://localhost:44308/api/details/${id}") 
+      axios.get("https://localhost:44308/api/people/${id}") 
             //axios.get("https://localhost:44308/api/details?id="+this.props.match.params.id)
                     .then(response => {  
                         this.setState({ 
-                          PersonId: response.data.PersonId,
+                          //PersonId: response.data.PersonId,
                           Name: response.data.Name,   
                           Phone: response.data.Phone,  
-                          CityId: response.data.CityId
+                         // CityId: response.data.CityId
                          });  
             
                     })  
@@ -69,7 +69,7 @@ class PDetails extends Component {
                    <td>{this.props.PersonId}</td>
                    <td>{this.props.Name}</td>
                    <td>{this.props.Phone}</td>
-                   <td>{this.props.CityId}</td>
+                  {/*  <td>{this.props.CityId}</td>*/}
                   {/*  <td>{this.state.City.CityName}</td>*/}
                  
                    <td><button onClick={()=>deletePerson(this.state.PersonId)}>Delete</button> &nbsp;&nbsp; </td>
