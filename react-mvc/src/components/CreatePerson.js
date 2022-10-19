@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import { Container, Col, Form, Row, FormGroup, Label, Input, Button } from 'reactstrap';
-
+import CityList from './CityList1';
+import CityList1 from './CityList1';
 //import './App.css';  
+
 
 class CreatePerson extends React.Component{  
     constructor(props){  
@@ -10,9 +12,10 @@ class CreatePerson extends React.Component{
 /*
     this.onChangeName = this.onChangeName.bind(this);  
     this.onChangePhone = this.onChangePhone.bind(this);  
-    this.onChangeCity = this.onChangeCity.bind(this);  
+    this.onChangeCity = this.onChangeCity.bind(this);
+     
     this.onSubmit = this.onSubmit.bind(this);  
-*/
+*/ 
     this.state = { 
     Name:'',  
     Phone:'',  
@@ -44,6 +47,7 @@ class CreatePerson extends React.Component{
       handleChange= (e)=> {  
         this.setState({[e.target.name]:e.target.value});  
         } 
+
 /*
         handleChange = event => {
           this.setState({ name: event.target.value });
@@ -51,9 +55,12 @@ class CreatePerson extends React.Component{
 */
         render() {  
         return (  
+          
           <Container className="App">  
           <h4 className="PageHeading">Enter New Person</h4>  
           <Form className="form">  
+
+          
             <Col>  
               <FormGroup Row>  
                 <Label for="name" sm={2}>Name</Label>  
@@ -90,9 +97,20 @@ class CreatePerson extends React.Component{
       </Col>
       </Col>
     </Form>  
+   
   </Container>  
+  
     );  
     }  
  }
 
  export default CreatePerson;
+
+ /*
+ <FormGroup Row>  
+          <Label for="Password" sm={2}>City</Label>  
+          <Col sm={10}>  
+            <Input type="text" name="CityId" onChange={this.handleChange} value={this.state.CityId} placeholder="Enter City" />
+            </Col>  
+        </FormGroup>
+ */

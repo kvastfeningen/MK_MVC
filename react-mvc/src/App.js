@@ -18,6 +18,7 @@ import {
 } from "react-router-dom";
 */
 import PList from './components/PList';
+//import CityList2 from './components/CityList2';
 
 import PeopleList from './components/PeopleList';
 import PDetails from './components/PDetails';
@@ -40,16 +41,20 @@ function App() {
               <li className="nav-item">  
                 <Link to={'/CreatePerson'} className="nav-link">CreatePerson</Link>  
               </li> 
+          
             </ul>  
           </div>  
-        </nav> <br /> 
+        </nav> <br />
+        
       <Switch>
       <Route exact path='/PList' component={PList} />
       
       
       <Route path='/CreatePerson' component={CreatePerson} />
-     </Switch>
 
+      
+     </Switch>
+    
       </div> 
    </Router>
 

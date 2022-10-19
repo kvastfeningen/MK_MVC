@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import axios from 'axios';
 import { Link } from 'react-router-dom'; 
+//import CityList1 from './CityList1';
 //import Table from './Table';  
 //import './App.css';  
 
@@ -45,7 +46,7 @@ function deletePerson(id){
         return (
          
             <div className="container">
-               
+              
               <h2>People</h2>
               <table>
                 <thead>
@@ -66,7 +67,7 @@ function deletePerson(id){
               <td>{p.cityId}</td>
               <td><Link to={"/PDetails/"+p.personId} className="btn btn-success">Details</Link></td>
               <td><button onClick={()=>deletePerson(p.personId)}>Delete</button> &nbsp;&nbsp; </td>
-             
+             <td></td>
               </tr>
                 ))}        
                 </tbody>
