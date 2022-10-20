@@ -101,7 +101,3 @@ class PDetails extends Component {
                 }  
 }
 export default PDetails; 
-
-/*
-key={this.state.PersonId}
-*/

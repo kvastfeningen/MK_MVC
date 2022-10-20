@@ -2,9 +2,29 @@ import React, { Component, useState } from 'react';
 import axios from 'axios';
 import { Container, Col, Form, Row, FormGroup, Label, Input, Button } from 'reactstrap';
 import Select from 'react-select';
+import DDList from './DDList'
 //import {CreateForm} from './CForm';
 
 //import './App.css';  
+
+export const CustomDropdown = (props) => (
+  <div className="form-group">
+    <strong>{props.CityId}</strong>
+    <select
+      className="form-control"
+      name="{props.CityId}"
+      onChange={props.onChange}
+    >
+      <option defaultValue>Select {props.name}</option>
+      {props.options.map((item, index) => (
+        <option key={index} value={item.id}>
+          {item.CityId}
+        </option>
+      ))}
+    </select>
+  </div>
+)
+
 
 class CreatePerson extends React.Component{  
     constructor(props){  
@@ -21,6 +41,22 @@ class CreatePerson extends React.Component{
     CityId:''  
     }  
     }
+/*
+    constructor() {
+      super()
+      this.state = {
+        collection: [],
+        value: '',
+      }
+    }
+*/
+/*
+    componentDidMount() {
+      fetch('https://localhost:44308/api/cities')
+        .then((response) => response.json())
+        .then((res) => this.setState({ collection: res }))
+    }
+*/
     CreatePerson=()=>{  
         axios.post("https://localhost:44308/api/people", '=' + JSON.stringify({ Name: 'this.state.Name',Phone:"this.state.Phone",CityId:"this.state.CityId"  })
         //({Name:this.state.Name,Phone:this.state.Phone,CityId:this.state.CityId}) 
@@ -77,7 +113,8 @@ return (
 <Label for="Password" sm={2}>City</Label>  
 <Col sm={10}>  
  
-  
+<DDList />
+  {/*
   <div className="drop-down" name="CityId">
                 <Select
                 value={this.state.CityId}
@@ -89,7 +126,7 @@ return (
               <br></br>
               <br></br>
             </div>
-  
+*/}
   </Col>  
 </FormGroup>
 
