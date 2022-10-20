@@ -18,6 +18,7 @@ import {
 } from "react-router-dom";
 */
 import PList from './components/PList';
+import PList2 from './components/PList2';
 import CityList from './components/CityList';
 import PeopleList from './components/PeopleList';
 import PDetails from './components/PDetails';
@@ -35,6 +36,9 @@ function App() {
             <ul className="navbar-nav mr-auto">  
               <li className="nav-item">  
                 <Link to={'/PList'} className="nav-link">PList</Link>  
+              </li> 
+              <li className="nav-item">  
+                <Link to={'/PDetails'} className="nav-link">PDetails</Link>  
               </li>  
               <li className="nav-item">  
                 <Link to={'/CityList'} className="nav-link">City List</Link>  
@@ -47,6 +51,7 @@ function App() {
         </nav> <br /> 
       <Switch>
       <Route exact path='/PList' component={PList} />
+      <Route exact path='/PList' component={PList2} />
       <Route exact path='/CityList' component={CityList} />
       <Route exact path='/PDetails' component={PDetails} />
       <Route path='/CreatePerson' component={CreatePerson} />

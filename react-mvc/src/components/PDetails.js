@@ -1,25 +1,30 @@
 import React, { Component } from 'react';   
 import { Container, Col, Form, Row, FormGroup, Label, Input, Button } from 'reactstrap';  
-import axios from 'axios'
+import axios from 'axios';
+import {useParams} from 'react-router-dom';
+
 
 function deletePerson(id){
   
-    axios.delete("https://localhost:44308/api/delete/${id}")
+    axios.delete(`https://localhost:44308/api/delete/${id}`)
     .then(json => {  
       if(json.data.Status==='Delete'){  
       alert('Record deleted successfully!!');  
       }  
       })  
     }
-
+    
 class PDetails extends Component {
+  
     constructor(props){  
         super(props)  
+        
+        
 
         this.state = {  
-            
+            PersonId:'',
             Name:'', 
-            Phone:'',  
+            Phone:''  
             //CityId:'' 
             } 
 
@@ -27,14 +32,21 @@ class PDetails extends Component {
 
            
             componentDidMount() {  
-              
-      axios.get("https://localhost:44308/api/people/${id}") 
+             
+      axios.get(`https://localhost:44308/api/people/${this.props.match.params.id}`) 
             //axios.get("https://localhost:44308/api/details?id="+this.props.match.params.id)
-                    .then(response => {  
+            
+            //.then(json => {     
+              
+            .then(response => {  
+              
                         this.setState({ 
-                          //PersonId: response.data.PersonId,
+                          
+                         // PersonId: json.data.PersonId,
+                         // Name: json.data.Name,   
+                        // Phone: json.data.Phone
                           Name: response.data.Name,   
-                          Phone: response.data.Phone,  
+                          Phone: response.data.Phone 
                          // CityId: response.data.CityId
                          });  
             
@@ -55,8 +67,9 @@ class PDetails extends Component {
                      <thead>
                        <tr>
                        <th>   </th>
-                         <th>Name</th>
+                         
                          <th>PersonId</th>
+                         <th>Name</th>
                          <th>Phone</th>
                          <th>City</th>
                        </tr>

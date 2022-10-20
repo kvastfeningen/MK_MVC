@@ -35,7 +35,23 @@ namespace MK_MVC.Controllers
         {
             List<Person> listOfPeople = _context.People.ToList();
 
-            return (listOfPeople);
+            return listOfPeople;
+        }
+
+        [HttpGet]
+        [Route("api/people/{id}")]
+        public IActionResult GetPerson(int id)
+        {
+            //Person p = new Person();
+            //var p = _context.People?.Where(p => p.PersonId == id).ToList().FirstOrDefault(); //List<Person> listOfPeople = _context.People.ToList();
+            var p = _context.People?.Where(p => p.PersonId == id).ToList().FirstOrDefault();
+            //var p = _context.People.Find(id);
+
+            if (p == null)
+            {
+                return NotFound();
+            }
+            return Ok(p);
         }
 
         [HttpGet]
@@ -82,7 +98,7 @@ namespace MK_MVC.Controllers
 
         }
 
-        [Route("api/create")]
+        [Route("api/people")]
         [HttpPost]
         public async Task<IActionResult> CreatePerson(Person p)
         //public object CreatePerson(Person p)
@@ -103,7 +119,7 @@ namespace MK_MVC.Controllers
 
         [Route("api/delete/{id}")]
         [HttpDelete]
-        public async Task<IActionResult> Delete(int id)
+        public IActionResult Delete(int id)
         {
             
             var personToRemove = _context.People.Where(x => x.PersonId == id).ToList().FirstOrDefault();
@@ -115,7 +131,7 @@ namespace MK_MVC.Controllers
 
             _context.People.Remove(personToRemove);
         
-            await _context.SaveChangesAsync();
+            _context.SaveChanges();
 
             return NoContent();
           
