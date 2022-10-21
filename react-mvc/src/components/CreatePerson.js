@@ -25,7 +25,7 @@ class CreatePerson extends React.Component{
         axios.post("https://localhost:44308/api/react/create", this.state)// '=' + JSON.stringify({ Name: 'this.state.Name',Phone:"this.state.Phone",CityId:"this.state.CityId"  })
              .then(res => {
         console.log(res);
-        console.log(res.datatoString);
+        //console.log(res.datatoString);
       });
 
       }  
@@ -99,7 +99,7 @@ return (
 
  
 
- 
+
  
  /*
   <div className="drop-down" name="CityId">

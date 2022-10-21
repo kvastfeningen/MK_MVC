@@ -1,4 +1,4 @@
-import React, { Component, useState } from 'react';
+import React, { Component, useState, useEffect } from 'react';
 import ReactDOM from 'react-dom';
 import axios from 'axios';
 import { Link } from 'react-router-dom'; 
@@ -7,13 +7,30 @@ import { Link } from 'react-router-dom';
 
 function deletePerson(id){
   
-  
+  //const { people } = this.state;
 
     axios.delete(`https://localhost:44308/api/delete/${id}`)
     
-    .then(json => {  
-      
-      })  
+    //.then(json => {  
+    // this.setState({
+    //   people: people.filter(p => p.personId !== id)
+   //  });
+    //  })  ;
+   // }
+   /*
+   .then(res => res.json())
+   .then(
+     (result) => {
+       this.setState({
+         response: result,
+         people: people.filter(p => p.personId !== id)
+       });
+     },
+     (error) => {
+       this.setState({ error });
+     }
+   )
+   */
     }
 
     export default class PList extends Component {
