@@ -1,15 +1,17 @@
 import React from 'react'
+
 export const CustomDropdown = (props) => (
   <div className="form-group">
-    <strong>{props.cityName}</strong>
+    <strong>{props.cityId}</strong>
     <select
       className="form-control"
-      name="{props.cityName}"
+      name="{props.cityId}"
+      
       onChange={props.onChange}
     >
       <option defaultValue>Select {props.name}</option>
       {props.options.map((item, index) => (
-        <option key={index} value={item.id}>
+        <option key={index} value={item.CityId}>
           {item.cityName}
         </option>
       ))}
@@ -37,8 +39,10 @@ export default class DDLIst extends React.Component {
       <div className="container mt-4">
         
         <CustomDropdown
-          name={this.state.cityName}
+          name={this.state.cityId}
+
           options={this.state.cities}
+           
           onChange={this.onChange}
         />
       </div>

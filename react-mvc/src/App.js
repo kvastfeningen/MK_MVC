@@ -20,7 +20,7 @@ import {
 import PList from './components/PList';
 //import PList2 from './components/PList2';
 import CityList from './components/CityList';
-import PeopleList from './components/PeopleList';
+//import PeopleList from './components/PeopleList';
 import PDetails from './components/PDetails';
 import CreatePerson from './components/CreatePerson';      
 

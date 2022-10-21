@@ -5,83 +5,28 @@ import Select from 'react-select';
 import DDList from './DDList'
 //import {CreateForm} from './CForm';
 
-//import './App.css';  
 
-export const CustomDropdown = (props) => (
-  <div className="form-group">
-    <strong>{props.CityId}</strong>
-    <select
-      className="form-control"
-      name="{props.CityId}"
-      onChange={props.onChange}
-    >
-      <option defaultValue>Select {props.name}</option>
-      {props.options.map((item, index) => (
-        <option key={index} value={item.id}>
-          {item.CityId}
-        </option>
-      ))}
-    </select>
-  </div>
-)
 
 
 class CreatePerson extends React.Component{  
     constructor(props){  
     super(props)  
-/*
-    this.onChangeName = this.onChangeName.bind(this);  
-    this.onChangePhone = this.onChangePhone.bind(this);  
-    this.onChangeCity = this.onChangeCity.bind(this);  
-    this.onSubmit = this.onSubmit.bind(this);  
-*/
+
     this.state = { 
+    
     Name:'',  
     Phone:'', 
     CityId:''  
     }  
     }
-/*
-    constructor() {
-      super()
-      this.state = {
-        collection: [],
-        value: '',
-      }
-    }
-*/
-/*
-    componentDidMount() {
-      fetch('https://localhost:44308/api/cities')
-        .then((response) => response.json())
-        .then((res) => this.setState({ collection: res }))
-    }
-*/
-    CreatePerson=()=>{  
-        axios.post("https://localhost:44308/api/people", '=' + JSON.stringify({ Name: 'this.state.Name',Phone:"this.state.Phone",CityId:"this.state.CityId"  })
-        //({Name:this.state.Name,Phone:this.state.Phone,CityId:this.state.CityId}) 
-        /*
-         type= 'POST',
-        contentType= 'application/json; charset=utf-8',
-        data=JSON.stringify*/
-     /* 
-     .then(json => {  
-      if(json.data.Status==='Success'){  
-        console.log(json.data.Status);  
-        alert("Data Save Successfully");  
-      
-        //this.props.history.push('/PList')  
-      }  
-      else{  
-      alert('Data not Saved');  
-      debugger;  
-      //this.props.history.push('/PList')  
-      }  
-      })  */
-      .then(res => {
+
+    CreatePerson=()=>{ 
+      console.log(this.state); 
+        axios.post("https://localhost:44308/api/react/create", this.state)// '=' + JSON.stringify({ Name: 'this.state.Name',Phone:"this.state.Phone",CityId:"this.state.CityId"  })
+             .then(res => {
         console.log(res);
-        console.log(res.data);
-      }))
+        console.log(res.datatoString);
+      });
 
       }  
 
@@ -109,24 +54,21 @@ return (
   <Input type="text" name="Phone" onChange={this.handleChange} value={this.state.Phone} placeholder="Enter Phone number" />
   </Col>  
 </FormGroup>
+
+<FormGroup Row>  
+          <Label for="Password" sm={2}>City</Label>  
+          <Col sm={10}>  
+            <Input type="text" name="CityId" onChange={this.handleChange} value={this.state.CityId} placeholder="Enter City" />
+            </Col>  
+        </FormGroup>
+
+  
 <FormGroup Row>  
 <Label for="Password" sm={2}>City</Label>  
 <Col sm={10}>  
- 
+
 <DDList />
-  {/*
-  <div className="drop-down" name="CityId">
-                <Select
-                value={this.state.CityId}
-                onChange={this.handleChange}
-                options={this.state.obj}
-              />
-              
-              <br></br>
-              <br></br>
-              <br></br>
-            </div>
-*/}
+ 
   </Col>  
 </FormGroup>
 
@@ -155,6 +97,42 @@ return (
 }
  export default CreatePerson;
 
+ 
+
+ 
+ 
+ /*
+  <div className="drop-down" name="CityId">
+                <Select
+                value={this.state.CityId}
+                onChange={this.handleChange}
+                options={this.state.obj}
+              />
+              
+              <br></br>
+              <br></br>
+              <br></br>
+            </div>
+*/
+/*
+export const CustomDropdown = (props) => (
+  <div className="form-group">
+    <strong>{props.CityId}</strong>
+    <select
+      className="form-control"
+      name="{props.CityId}"
+      onChange={props.onChange}
+    >
+      <option defaultValue>Select {props.name}</option>
+      {props.options.map((item, index) => (
+        <option key={index} value={item.id}>
+          {item.CityId}
+        </option>
+      ))}
+    </select>
+  </div>
+)
+*/
 
  // <Input type="text" name="CityId" onChange={this.handleChange} value={this.state.CityId} placeholder="Enter City" />
  /*
@@ -199,3 +177,21 @@ return (
     </Form>  
   </Container>  
  */
+
+  /*
+  /*
+    constructor() {
+      super()
+      this.state = {
+        collection: [],
+        value: '',
+      }
+    }
+*/
+/*
+    componentDidMount() {
+      fetch('https://localhost:44308/api/cities')
+        .then((response) => response.json())
+        .then((res) => this.setState({ collection: res }))
+    }
+*/

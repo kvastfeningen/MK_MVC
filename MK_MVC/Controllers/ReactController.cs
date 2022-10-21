@@ -7,6 +7,7 @@ using MK_MVC.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text.Json;
 using System.Threading.Tasks;
 using System.Web.Http;
 using HttpDeleteAttribute = System.Web.Http.HttpDeleteAttribute;
@@ -65,7 +66,7 @@ namespace MK_MVC.Controllers
             return (listOfCities);
         }
 
-        [Route("api/details/{id}")]
+        [Route("api/react/details/{id}")]
         [HttpGet]
         public object Details(int id)
         //public object Details(int id)
@@ -98,19 +99,19 @@ namespace MK_MVC.Controllers
 
         }
 
-        [Route("api/people")]
+        [Route("api/react/create")]
         [HttpPost]
-        public async Task<IActionResult> CreatePerson(Person p)
-        //public object CreatePerson(Person p)
+          public IActionResult CreatePerson(object p)
         {
+            ReactPerson rperson = JsonSerializer.Deserialize<ReactPerson>(p.ToString());
+
             Person person = new Person();
-            
-            person.Name = p.Name;
-            person.Phone = p.Phone;
-            person.CityId = p.City.CityId;
-            //person.City = p.City;
+            person.Name = rperson.Name;
+            person.Phone = rperson.Phone;
+            person.CityId = Convert.ToInt32(rperson.CityId);
+            //person.CityId = rperson.CityId;
             _context.People.Add(person);
-            await _context.SaveChangesAsync();
+            _context.SaveChanges();
 
             return Ok();
         }

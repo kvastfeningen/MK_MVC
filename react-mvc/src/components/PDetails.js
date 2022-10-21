@@ -32,8 +32,9 @@ class PDetails extends Component {
 
            
             componentDidMount() {  
-             
-      axios.get(`https://localhost:44308/api/people/${this.props.match.params.id}`) 
+              fetch("https://localhost:44308/api/react/details/${id}")
+              //axios.get("https://localhost:44308/api/people?id")   
+      //axios.get(`https://localhost:44308/api/people/${id}`) 
             //axios.get("https://localhost:44308/api/details?id="+this.props.match.params.id)
             
             //.then(json => {     
@@ -45,6 +46,7 @@ class PDetails extends Component {
                          // PersonId: json.data.PersonId,
                          // Name: json.data.Name,   
                         // Phone: json.data.Phone
+                        PersonId: response.data.PersonId,
                           Name: response.data.Name,   
                           Phone: response.data.Phone 
                          // CityId: response.data.CityId
@@ -71,7 +73,7 @@ class PDetails extends Component {
                          <th>PersonId</th>
                          <th>Name</th>
                          <th>Phone</th>
-                         <th>City</th>
+                        {/* <th>City</th>*/}
                        </tr>
                      </thead>
                      <tbody> 

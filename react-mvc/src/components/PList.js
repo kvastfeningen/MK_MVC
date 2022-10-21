@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, useState } from 'react';
 import ReactDOM from 'react-dom';
 import axios from 'axios';
 import { Link } from 'react-router-dom'; 
@@ -7,16 +7,17 @@ import { Link } from 'react-router-dom';
 
 function deletePerson(id){
   
+  
+
     axios.delete(`https://localhost:44308/api/delete/${id}`)
+    
     .then(json => {  
-      if(json.data.Status==='Delete'){  
-      alert('Record deleted successfully!!');  
-      }  
+      
       })  
     }
 
     export default class PList extends Component {
-    //export class PList extends Component {
+    
       constructor(props) {
         super(props);
         this.state = {
@@ -78,7 +79,12 @@ function deletePerson(id){
        
     }
    // export default PList;
-   export { default as PList } from './PList';
+  // export { default as PList } from './PList';
+
+  //.then(()=>{
+      //let list=this.state.people.filter((item)=>return (item.id===id))
+      //this.setState({people:list})}
+//.catch(err => console.log(err))
 
    /*
  constructor(props) {
