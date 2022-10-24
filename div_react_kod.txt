@@ -1,0 +1,30 @@
+
+<table>
+                     <thead>
+                       <tr>
+                       <th>   </th>
+                         
+                         <th>PersonId</th>
+                         <th>Name</th>
+                         <th>Phone</th>
+                        {/* <th>City</th>*/}
+                       </tr>
+                     </thead>
+                     <tbody> 
+     
+                     
+                 <tr >
+                   <td></td>
+                   <td>{this.props.PersonId}</td>
+                   <td>{this.props.Name}</td>
+                   <td>{this.props.Phone}</td>
+                  {/*  <td>{this.props.CityId}</td>*/}
+                  {/*  <td>{this.state.City.CityName}</td>*/}
+                 
+                   <td><button onClick={()=>deletePerson(this.state.PersonId)}>Delete</button> &nbsp;&nbsp; </td>
+                   
+                   </tr>
+                            
+                     </tbody>
+                     
+                   </table>

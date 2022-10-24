@@ -66,10 +66,10 @@ namespace MK_MVC.Controllers
             return (listOfCities);
         }
 
-        [Route("api/react/details/{id}")]
+        [Route("api/details/{id}")]
         [HttpGet]
-        public object Details(int id)
-        //public object Details(int id)
+       public object Details(int id)
+        //public IActionResult Details(int id)
         //public async Task<IActionResult> Details(int id)
         {
             // List<Person> PersonDetails = _context.People.Include(pl => pl.PersonLanguages).Include(p => p.City).Where(s => s.PersonId.Equals(id)).ToList();
@@ -99,17 +99,18 @@ namespace MK_MVC.Controllers
 
         }
 
-        [Route("api/react/create")]
+        [Route("api/create")]
         [HttpPost]
           public IActionResult CreatePerson(object p)
         {
             ReactPerson rperson = JsonSerializer.Deserialize<ReactPerson>(p.ToString());
-
+            
             Person person = new Person();
+            person.PersonId = rperson.PersonId;
             person.Name = rperson.Name;
             person.Phone = rperson.Phone;
             person.CityId = Convert.ToInt32(rperson.CityId);
-            //person.CityId = rperson.CityId;
+            
             _context.People.Add(person);
             _context.SaveChanges();
 

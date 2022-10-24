@@ -16,13 +16,15 @@ class CreatePerson extends React.Component{
     
     Name:'',  
     Phone:'', 
-    CityId:''  
+    CityId:' '  
     }  
     }
 
     CreatePerson=()=>{ 
-      console.log(this.state); 
-        axios.post("https://localhost:44308/api/react/create", this.state)// '=' + JSON.stringify({ Name: 'this.state.Name',Phone:"this.state.Phone",CityId:"this.state.CityId"  })
+     // JSON.stringify({CityId:"this.state.CityId.toString"})
+      //console.log(this.state); 
+      console.log(JSON.stringify(this.state));
+        axios.post("https://localhost:44308/api/create", this.state) //+ JSON.stringify({ Name: 'this.state.Name',Phone:"this.state.Phone",CityId:"this.state.CityId"  })
              .then(res => {
         console.log(res);
         //console.log(res.datatoString);
@@ -32,7 +34,7 @@ class CreatePerson extends React.Component{
 
       handleChange= (e)=> {  
         this.setState({[e.target.name]:e.target.value}); 
-       // alert(`The name you entered was: ${Name}`) 
+
         } 
 
 render() {

@@ -7,15 +7,24 @@ import { Link } from 'react-router-dom';
 
 function deletePerson(id){
   
-  //const { people } = this.state;
-
+  //const people = this.state.people;
+  //console.log(this.state); 
     axios.delete(`https://localhost:44308/api/delete/${id}`)
+/*
+    .then(res => {
+      console.log(res);
+      //console.log(res.datatoString);
+    });
+    */
     
-    //.then(json => {  
-    // this.setState({
-    //   people: people.filter(p => p.personId !== id)
-   //  });
-    //  })  ;
+    .then(json => {  
+   //this.setState({
+   // state: this.setState
+   window.location.reload(true);
+       //people: people.filter(p => p.personId !== id)
+     });
+    
+      }  ;
    // }
    /*
    .then(res => res.json())
@@ -31,7 +40,8 @@ function deletePerson(id){
      }
    )
    */
-    }
+    
+
 
     export default class PList extends Component {
     
@@ -41,6 +51,36 @@ function deletePerson(id){
           people: [],
           
         };
+      }
+
+      state = {
+        toggle: false
+      }
+
+      handleToggle = () => {
+        this.setState(prevState => ({
+          toggle : !prevState.toggle
+        })
+        )
+      }
+
+      // sort by name
+      alphaSort = () => {
+  
+        return (
+        [...this.state.people].sort(function(a, b) {
+          let nameA = a.name.toUpperCase(); 
+          let nameB = b.name.toUpperCase(); 
+          if (nameA < nameB) {
+            return -1;
+          }
+          if (nameA > nameB) {
+            return 1;
+          }
+        
+          // names must be equal
+          return 0;
+        }));
       }
 
       componentDidMount() {
@@ -64,23 +104,23 @@ function deletePerson(id){
          
             <div className="container">
                
-              <h2>People</h2>
+              <h2>People   <button onClick={this.handleToggle}>Sort by Name</button></h2>  
               <table>
                 <thead>
                   <tr>
-                  <th>   </th>
+                  {/*<th>PersonId</th>*/}
                     <th>Name</th>
-                    <th>PersonId</th>
+                    
                     <th>CityId</th>
                   </tr>
                 </thead>
                 <tbody> 
-
-                {this.state.people.map(p => (
+              
+              {(this.state.toggle ? this.alphaSort() : this.state.people).map(p => (
             <tr key={p.personId}>
-              <td></td>
+              {/*  <td>{p.personId}</td>*/}
               <td>{p.name}</td>
-              <td>{p.personId}</td>
+             
               <td>{p.cityId}</td>
               <td><Link to={"/PDetails/"+p.personId} className="btn btn-success">Details</Link></td>
               <td><button onClick={()=>deletePerson(p.personId)}>Delete</button> &nbsp;&nbsp; </td>

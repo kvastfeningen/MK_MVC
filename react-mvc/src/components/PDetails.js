@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Container, Col, Form, Row, FormGroup, Label, Input, Button } from 'reactstrap';  
 import axios from 'axios';
 import {useParams} from 'react-router-dom';
-
+import { Link } from 'react-router-dom'; 
 
 function deletePerson(id){
   
@@ -20,25 +20,40 @@ class PDetails extends Component {
         super(props)  
         
         
-
+/*
         this.state = {  
             PersonId:'',
             Name:'', 
             Phone:''  
             //CityId:'' 
             } 
-
+*/
             }
 
            
             componentDidMount() {  
-              fetch("https://localhost:44308/api/react/details/${id}")
+             // console.log(this.state); 
+        //axios.get("https://localhost:44308/api/details", this.state)
+        axios.get("https://localhost:44308/api/details/${id}")
               //axios.get("https://localhost:44308/api/people?id")   
       //axios.get(`https://localhost:44308/api/people/${id}`) 
             //axios.get("https://localhost:44308/api/details?id="+this.props.match.params.id)
             
-            //.then(json => {     
               
+        .then(res => res.json())
+        .then(
+        (result) => {
+            this.setState({
+              person:result
+            });
+        },
+        (error) => {
+            alert(error);
+        }
+        )
+
+            //.then(json => {     
+             /* 
             .then(response => {  
               
                         this.setState({ 
@@ -55,7 +70,7 @@ class PDetails extends Component {
                     })  
                     .catch(function (error) {  
                         console.log(error);  
-                    })  
+                    })  */
               }      
 
 
@@ -63,9 +78,8 @@ class PDetails extends Component {
                 return ( 
 
 <div className="container">
-                   
-                   
-                   <table>
+ 
+<table>
                      <thead>
                        <tr>
                        <th>   </th>
@@ -78,8 +92,8 @@ class PDetails extends Component {
                      </thead>
                      <tbody> 
      
+                     <tr>
                      
-                 <tr >
                    <td></td>
                    <td>{this.props.PersonId}</td>
                    <td>{this.props.Name}</td>
@@ -87,7 +101,7 @@ class PDetails extends Component {
                   {/*  <td>{this.props.CityId}</td>*/}
                   {/*  <td>{this.state.City.CityName}</td>*/}
                  
-                   <td><button onClick={()=>deletePerson(this.state.PersonId)}>Delete</button> &nbsp;&nbsp; </td>
+                   <td><Button onClick={()=>deletePerson(this.state.PersonId)}>Delete</Button> &nbsp;&nbsp; </td>
                    
                    </tr>
                             
@@ -103,3 +117,8 @@ class PDetails extends Component {
                 }  
 }
 export default PDetails; 
+
+/*
+
+
+*/
