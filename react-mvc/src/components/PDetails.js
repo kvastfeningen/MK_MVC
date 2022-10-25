@@ -18,24 +18,32 @@ class PDetails extends Component {
   
     constructor(props){  
         super(props)  
-        
-        
-/*
+
         this.state = {  
             PersonId:'',
             Name:'', 
             Phone:''  
             //CityId:'' 
             } 
-*/
-            }
+
+      }
 
            
             componentDidMount() {  
+              //axios.get("https://localhost:44308/api/people/${id}")
              // console.log(this.state); 
         //axios.get("https://localhost:44308/api/details", this.state)
-        axios.get("https://localhost:44308/api/details/${id}")
-              //axios.get("https://localhost:44308/api/people?id")   
+        
+              axios.get("https://localhost:44308/api/details",
+              {
+                params: {
+                  PersonId: 'id'
+                },
+                headers: {
+                  'x-access-token': 'token-value'
+                }
+              })   
+              
       //axios.get(`https://localhost:44308/api/people/${id}`) 
             //axios.get("https://localhost:44308/api/details?id="+this.props.match.params.id)
             
@@ -44,7 +52,10 @@ class PDetails extends Component {
         .then(
         (result) => {
             this.setState({
-              person:result
+              //person:result
+              PersonId:result,
+              Name:result,
+              Phone:result
             });
         },
         (error) => {
@@ -95,9 +106,9 @@ class PDetails extends Component {
                      <tr>
                      
                    <td></td>
-                   <td>{this.props.PersonId}</td>
-                   <td>{this.props.Name}</td>
-                   <td>{this.props.Phone}</td>
+                   <td>{this.state.PersonId}</td>
+                   <td>{this.state.Name}</td>
+                   <td>{this.state.Phone}</td>
                   {/*  <td>{this.props.CityId}</td>*/}
                   {/*  <td>{this.state.City.CityName}</td>*/}
                  

@@ -22,7 +22,7 @@ class CreatePerson extends React.Component{
 
     CreatePerson=()=>{ 
      // JSON.stringify({CityId:"this.state.CityId.toString"})
-      //console.log(this.state); 
+      console.log(this.state); 
       console.log(JSON.stringify(this.state));
         axios.post("https://localhost:44308/api/create", this.state) //+ JSON.stringify({ Name: 'this.state.Name',Phone:"this.state.Phone",CityId:"this.state.CityId"  })
              .then(res => {
