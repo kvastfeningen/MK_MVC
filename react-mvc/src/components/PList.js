@@ -2,34 +2,11 @@ import React, { Component, useState, useEffect } from 'react';
 import ReactDOM from 'react-dom';
 import axios from 'axios';
 import { Link } from 'react-router-dom'; 
-//import Table from './Table';  
-//import './App.css';  
-/*
-function deletePerson(id){
-      
-  //const [people, setPeople ] = useState([])
-  //const [people, setPeople] = useState(people.people);
-  //const element = document.querySelector('#delete-request .status');
-  axios.delete(`https://localhost:44308/api/delete/${id}`)
-
-  .then(res => { 
-   //people.splice(id,1)
-//setPeople([...people])
-    console.log(res);  
-    console.log(res.data);  
- //window.location.reload(true);
- //setPeople(people => people.filter(people => people.personId != id));
-// const people = this.state.people.filter(item => item.id !== id);  
- //this.setState({ people });  
- //element.innerHTML = 'Delete successful';
-   })
-  
-    } 
-   */
+import personDetails from './PList2';
 
     export default class PList extends Component {
-    
-    
+     // export default function PList() {
+    //const PList = () => {
 
       constructor(props) {
         super(props);
@@ -73,21 +50,23 @@ function deletePerson(id){
       
         
         axios.delete(`https://localhost:44308/api/delete/${id}`)
-      
-        .then(res => { 
-         //people.splice(id,1)
-      //setPeople([...people])
-          console.log(res);  
-          console.log(res.data);  
-       //window.location.reload(true);
-       //setPeople(people => people.filter(people => people.personId != id));
-      // const people = this.state.people.filter(item => item.id !== id);  
-       //this.setState({ people });  
-       //element.innerHTML = 'Delete successful';
-         })
+        //.then(res => { 
+          this.setState({
+            people: this.state.people.filter(item => item.id != id)
+          })
+       
         
           } 
+/*
+          personDetails(id){
+            axios.get(`https://localhost:44308/api/details/${id}`)
+            .then(res =>{
+              console.log(res);
+              console.log(res.data);
+            })
 
+          }
+*/
       componentDidMount() {
         //const [people, setPeople ]= useState([])
         axios.get("https://localhost:44308/api/people")
@@ -95,8 +74,7 @@ function deletePerson(id){
        // .then(res => res.json())
         .then(
         (result) => {
-          
-          
+        
           const people= result.data;
           //people= result.data;
             this.setState({
@@ -110,7 +88,7 @@ function deletePerson(id){
         )
     }
 
-    
+    //const [people, setPeople] = useState(people);
 
     render() {
         return (
@@ -135,7 +113,8 @@ function deletePerson(id){
               <td>{p.name}</td>
              
               <td>{p.cityId}</td>
-              <td><Link to={"/PDetails/"+p.personId} className="btn btn-success">Details</Link></td>
+              
+              <td><button onClick={()=>this.personDetails(p.personId)}>Details</button> &nbsp;&nbsp; </td>
               <td><button onClick={()=>this.deletePerson(p.personId)}>Delete</button> &nbsp;&nbsp; </td>
              
               </tr>

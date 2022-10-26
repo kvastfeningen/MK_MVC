@@ -79,9 +79,12 @@ namespace MK_MVC.Controllers
         {
             
             var p = _context.People?.Where(p => p.PersonId == id).ToList().FirstOrDefault();*/
+        // [Route("api/details/{id}")]
+        // [HttpGet("{id:int}")]
         [Route("api/details/{id}")]
-         [HttpGet("{id:int}")]
-        //[HttpGet]
+        [HttpGet("{id}")]
+      // [HttpGet]
+        
         public ActionResult<Person> GetP(int id)
             {
             var p = _context.People?.Where(p => p.PersonId == id).ToList().FirstOrDefault();

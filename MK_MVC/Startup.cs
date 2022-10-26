@@ -40,8 +40,8 @@ namespace MK_MVC
 						{
 
 							policy.WithOrigins("*")
-							.AllowAnyHeader()
-                            .AllowAnyMethod()
+							//.AllowAnyHeader()
+                           // .AllowAnyMethod()
                             ;
 							
                         });
@@ -79,9 +79,14 @@ namespace MK_MVC
 			if (env.IsDevelopment())
 			{
 				app.UseDeveloperExceptionPage();
-			}
 
-			
+			}
+            else
+            {
+                app.UseExceptionHandler("/Error");
+                app.UseHsts();
+            }
+
             // Enable middleware to serve generated Swagger as a JSON endpoint.
             app.UseSwagger();
             // Enable middleware to serve swagger-ui (HTML, JS, CSS, etc.),
@@ -96,15 +101,26 @@ namespace MK_MVC
 
 			app.UseRouting();
 
+			//testar med denna
+            //app.UseRequestLocalization();
+
             //app.UseCors("AllowReact");
-            app.UseCors();
+            app.UseCors(x => x
+                .AllowAnyMethod()
+                .AllowAnyHeader()
+                .SetIsOriginAllowed(origin => true) // allow any origin
+                .AllowCredentials());
+
             app.UseAuthentication();
 			app.UseAuthorization();
 
 			app.UseSession();
 
+			//testar att ta med dessa
+            //app.UseResponseCompression();
+            //app.UseResponseCaching();
 
-			/*
+            /*
             // Add Access Control Allow Origin headers
             app.use((req, res, next) => {
                 res.setHeader("Access-Control-Allow-Origin", "*");

@@ -29,7 +29,7 @@ function App() {
     return (
       
 <Router>
-
+<br></br> 
 <div className="container"> 
 <nav className="navbar navbar-expand-lg navheader">  
           <div className="collapse navbar-collapse" >  
@@ -37,23 +37,19 @@ function App() {
               <li className="nav-item">  
                 <Link to={'/PList'} className="nav-link">PList</Link>  
                 </li> 
-              <li className="nav-item">  
-                <Link to={'/PDetails'} className="nav-link">PDetails</Link>  
-              </li>  
-              <li className="nav-item">  
-                <Link to={'/CityList'} className="nav-link">City List</Link>  
-              </li>  
+               
+               
               <li className="nav-item">  
                 <Link to={'/CreatePerson'} className="nav-link">CreatePerson</Link>  
               </li> 
             </ul>  
           </div>  
-        </nav> <br /> 
+        </nav> 
       <Switch>
       <Route exact path='/PList' component={PList} />
       
-      <Route exact path='/CityList' component={CityList} />
-      <Route exact path='/PDetails' component={PDetails} />
+      
+      
       <Route path='/CreatePerson' component={CreatePerson} />
      </Switch>
 
