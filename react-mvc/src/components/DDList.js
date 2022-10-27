@@ -32,8 +32,8 @@ export default class DDLIst extends React.Component {
       .then((res) => this.setState({ cities: res }))
   }
   onChange = (event) => {
-    this.setState({ value: event.target.value })
-    
+    this.setState({ value: event.target.value.toString })
+    //(event.target.value.CityId.toString());
   }
   render() {
     return (

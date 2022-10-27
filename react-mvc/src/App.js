@@ -45,14 +45,13 @@ function App() {
             </ul>  
           </div>  
         </nav> 
-      <Switch>
+        <Switch>
       <Route exact path='/PList' component={PList} />
       
       
       
       <Route path='/CreatePerson' component={CreatePerson} />
      </Switch>
-
       </div> 
    </Router>
 
@@ -62,6 +61,18 @@ function App() {
 export default App;
 
 /*
+<PList />
+      <CreatePerson />
+<Switch>
+      <Route exact path='/PList' component={PList} />
+      
+      
+      
+      <Route path='/CreatePerson' component={CreatePerson} />
+     </Switch>
+
+
+
 <Route exact path='/PList2' component={PList2} />
 
 <li className="nav-item">  

@@ -1,13 +1,17 @@
-﻿using DocumentFormat.OpenXml.Office2010.Excel;
+﻿using Amazon.S3.Model;
+using DocumentFormat.OpenXml.Office2010.Excel;
 using DocumentFormat.OpenXml.Wordprocessing;
 using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Formatters;
 using Microsoft.EntityFrameworkCore;
 using MK_MVC.Data;
 using MK_MVC.Models;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text.Json;
 using System.Threading.Tasks;
@@ -15,6 +19,8 @@ using System.Web.Http;
 using HttpDeleteAttribute = System.Web.Http.HttpDeleteAttribute;
 using HttpGetAttribute = Microsoft.AspNetCore.Mvc.HttpGetAttribute;
 using HttpPostAttribute = System.Web.Http.HttpPostAttribute;
+using JsonSerializer = System.Text.Json.JsonSerializer;
+//using JsonSerializer = System.Text.Json.JsonSerializer;
 using RouteAttribute = Microsoft.AspNetCore.Mvc.RouteAttribute;
 
 namespace MK_MVC.Controllers
@@ -102,8 +108,16 @@ namespace MK_MVC.Controllers
         [HttpPost]
           public IActionResult CreatePerson(object p)
         {
-            ReactPerson rperson = JsonSerializer.Deserialize<ReactPerson>(p.ToString());
-            
+            ReactPerson rperson = System.Text.Json.JsonSerializer.Deserialize<ReactPerson>(p.ToString());
+            //ReactPerson rperson = JsonConvert.DeserializeObject<ReactPerson>(systemTextJsonOutputFormatter);
+            //Class1[] result = System.Text.Json.JsonSerializer.Deserialize<Class1[]>(json);
+            /*var serializeOptions = new JsonSerializerOptions();
+
+            serializeOptions.Converters.Add(new Int32Converter());
+
+            ReactPerson empObject = JsonSerializer.Deserialize<ReactPerson>
+                                 (rperson.CityId, serializeOptions);*/
+
             Person person = new Person();
             person.PersonId = rperson.PersonId;
             person.Name = rperson.Name;

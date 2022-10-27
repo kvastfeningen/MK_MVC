@@ -31,7 +31,7 @@ class PDetails extends Component {
       }
 
            
-            componentDidMount() {  
+          //  componentDidMount() {  
               //axios.get("https://localhost:44308/api/people/${id}")
              // console.log(this.state); 
         //axios.get("https://localhost:44308/api/details", this.state)
@@ -47,9 +47,9 @@ class PDetails extends Component {
               })   
            */   
       //axios.get(`https://localhost:44308/api/details/${id}`) 
-            axios.get("https://localhost:44308/api/details?id="+this.props.match.params.id)
+            //axios.get("https://localhost:44308/api/details?id="+this.props.match.params.id)
             
-              
+  /*            
         .then(res => res.json())
         .then(
         (result) => {
@@ -64,7 +64,7 @@ class PDetails extends Component {
             alert(error);
         }
         )
-
+*/
             //.then(json => {     
              /* 
             .then(response => {  
@@ -83,9 +83,9 @@ class PDetails extends Component {
                     })  
                     .catch(function (error) {  
                         console.log(error);  
-                    })  */
+                    })  
               }      
-
+*/
 
               render() {  
                 return ( 

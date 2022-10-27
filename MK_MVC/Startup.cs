@@ -52,7 +52,10 @@ namespace MK_MVC
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "My API", Version = "v1" });
             });
-            services.AddControllers();
+			//services.AddControllers().AddJsonOptions();
+			//AddNewtonsoftJson();
+			services.AddControllers();
+				//.AddNewtonsoftJson();
 
             services.AddSession(options =>
 			{

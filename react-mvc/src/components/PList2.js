@@ -7,7 +7,7 @@ import axios from 'axios'
 //}
 //export default PList2; 
 
-
+/*
 export function PList2() { 
       
   personDetails(id){
@@ -18,7 +18,7 @@ export function PList2() {
     })
 
   }
-
+*/
   /*
 const [name, setName] = useState({})
  const [id, setId] = useState(2)
@@ -53,4 +53,4 @@ axios
              );  
          }              
 */
-        }
+     //   }

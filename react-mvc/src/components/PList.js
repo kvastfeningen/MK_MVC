@@ -2,7 +2,7 @@ import React, { Component, useState, useEffect } from 'react';
 import ReactDOM from 'react-dom';
 import axios from 'axios';
 import { Link } from 'react-router-dom'; 
-import personDetails from './PList2';
+import { personDetails } from './PD';
 
     export default class PList extends Component {
      // export default function PList() {
@@ -17,12 +17,14 @@ import personDetails from './PList2';
       }
 
       state = {
-        toggle: false
+        toggle: false,
+        butttext: "Sort by Name"
       }
-
+      
       handleToggle = () => {
         this.setState(prevState => ({
           toggle : !prevState.toggle
+         // this.setState({ butttext }); 
         })
         )
       }
@@ -57,7 +59,7 @@ import personDetails from './PList2';
        
         
           } 
-/*
+
           personDetails(id){
             axios.get(`https://localhost:44308/api/details/${id}`)
             .then(res =>{
@@ -66,7 +68,7 @@ import personDetails from './PList2';
             })
 
           }
-*/
+
       componentDidMount() {
         //const [people, setPeople ]= useState([])
         axios.get("https://localhost:44308/api/people")
